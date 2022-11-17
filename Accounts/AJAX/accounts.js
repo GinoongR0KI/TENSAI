@@ -24,9 +24,7 @@ function getAccounts() {
             cont_modals = document.querySelector("#cont_modals");
             cont_modals.innerHTML = "";
 
-            if (results[0] === "") {
-                generateToast("getAccError", "Notification", "Get Account", "Error: No Results Found");
-            } else {
+            try {
                 var accounts = JSON.parse(results[0]);
 
                 for (i = accounts.length-1; i >= 0; i--) {
@@ -245,6 +243,8 @@ function getAccounts() {
                     //
 
                 }
+            } catch (e) {
+                generateToast("getAccError", "Notification", "Get Account", "Error: No Results Found");
             }
 
         }
