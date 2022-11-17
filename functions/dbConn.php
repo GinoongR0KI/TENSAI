@@ -1,9 +1,9 @@
 <?php
 
-    $server = "localhost";
+    $server = "containers-us-west-118.railway.app:5558";
     $dbUsername = "root";
-    $dbPassword = "";
-    $dbName = "tensaiDB";
+    $dbPassword = "SkdO7uDoL8HLPtYXEnVN";
+    $dbName = "railway";
 
     $db = new mysqli($server, $dbUsername, $dbPassword, $dbName);
 
