@@ -1,0 +1,89 @@
+.tensai-body{
+    background-size: cover;
+    min-height: 100vh;
+    position: relative;
+    color: #fff;
+}
+
+.tensai-head, .tensai-text{
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.tensai-head{
+    border-bottom: 3px solid #A2DBFA;
+    margin: 5px;
+}
+
+.custBtn {
+    background-color: rgba(109, 178, 210, 0.5);
+}
+
+.color-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgb(5, 55, 66, .5); */
+    background-color: rgb(229, 199, 136, 0.50);
+}
+
+.imgIcons {
+    width:15vw;
+}
+
+.slide {
+  transition:1s;
+}
+
+/*Lesson*/
+
+
+/*Assessment*/
+.assessment-body{
+    box-sizing: border-box;
+}
+.assessment-container{
+    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+    min-width: 90vw;
+    min-height: 80vh;
+    overflow: hidden;
+  }
+  .assessment-header{
+    padding: 2rem;
+    background-color: rgb(162, 219, 250, 0.5);
+  }
+  h2{
+    text-align: center;
+    margin: 0;
+  }
+  
+  ul{
+    /* list-style-type: none; */
+    padding: 2rem;
+  }
+  ul li{
+    font-size: 1.2rem;
+    margin: 1rem 0;
+  }
+  ul li label{
+    cursor: pointer;
+  }
+  button .submit{
+    background-color: #03cae4;
+    color: #fff;
+    border: none;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-family: inherit;
+    padding: 1.3rem;
+  }
+  button .submit:hover{
+    background-color: #04adc4;
+  }
+  button .submit:focus{
+    outline: none;
+    background-color: #053742;
+  }

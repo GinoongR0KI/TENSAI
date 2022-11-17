@@ -1,0 +1,38 @@
+// Custom.scss
+//Navigation
+$nav-pills-link-active-color: #053742;
+$nav-pills-link-active-bg: #A2DBFA;
+
+//NavTabs
+
+$nav-tabs-link-active-color: #053742;
+$nav-tabs-link-active-border-color: #053742;
+
+$nav-link-color: #548CA8;
+
+
+
+//table hover
+$table-hover-color: #ffffff;
+$table-hover-bg: #39A2DB;
+
+//Import functions and variables
+@import"node_modules/bootstrap/scss/functions";
+@import"node_modules/bootstrap/scss/variables";
+
+//Color Palette
+$color-palette:(
+    "background": #1D2D50,
+    "palette1": #053742,
+    "palette2": #39A2DB,
+    "palette3": #A2DBFA,
+    "palette4": #E8F0F2,
+    "redcolor": #E64848
+);
+
+//merge
+$theme-colors: map-merge($color-palette, $theme-colors);
+
+//Import bootstrap
+@import"node_modules/bootstrap/scss/bootstrap.scss";
+
