@@ -244,6 +244,13 @@ function getAccounts() {
 
                 }
             } catch (e) {
+                var row = createRow();
+
+                var text = document.createTextNode("No Results Found");
+                row.appendChild(row);
+
+                cont_accounts.appendChild(row);
+
                 generateToast("getAccError", "Notification", "Get Account", "Error: No Results Found");
             }
 
