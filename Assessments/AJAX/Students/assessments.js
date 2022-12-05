@@ -41,13 +41,14 @@ function loadAssessments() {
                     var cardImg = createCardImg();
 
                     var cardBody = createCardBody();
+                    var cardFooter = createCardFooter();
 
                     var cardTitle = createCardTitle(title);
                     var cardDesc = createCardDesc(numQuestions);
                     var cardView = createCardView(assessmentID);
 
                         // Append
-                    appendCard(card, cardImg, cardBody, cardTitle, cardDesc, cardView);
+                    appendCard(card, cardImg, cardBody, cardTitle, cardDesc, cardFooter, cardView);
                         //
                     //
 
@@ -64,13 +65,15 @@ function loadAssessments() {
 }
 
 // Appending
-function appendCard(card, img, body, title, desc, view) {
+function appendCard(card, img, body, title, desc, footer, view) {
+    footer.appendChild(view);
+
     body.appendChild(title);
     body.appendChild(desc);
-    body.appendChild(view);
 
     card.appendChild(img);
     card.appendChild(body);
+    card.appendChild(footer);
 }
 //
 
@@ -80,40 +83,43 @@ function createCard() {
     var card = document.createElement("div");
 
     // Attribute
-    card.setAttribute("class", "card border-palette3 bg-transparent");
-    card.setAttribute("style", "width: 15rem;");
+    card.setAttribute("class", "assessment-card m-3");
     //
 
     return card;
 }
 
 function createCardImg() {
+    var div = document.createElement("div");
     var img = document.createElement("img");
 
     // Attribute
-    img.setAttribute("class", "card-img-top");
-    img.setAttribute("src", "../src/s2.jpg");
+    div.setAttribute("class","assess-thumbnail d-flex justify-content-center");
+    img.setAttribute("src", "../mat_icons/assess.png");
     //
 
-    return img;
+    // Append
+    div.appendChild(img);
+
+    return div;
 }
 
 function createCardBody() {
     var div = document.createElement("div");
 
     // Attribute
-    div.setAttribute("class", "card-body");
-    div.setAttribute("style", "background-color:RGBA(5, 55, 66, 0.8)");
+    div.setAttribute("class", "assess-body");
     //
 
     return div;
 }
 
 function createCardTitle(title) {
-    var txt = document.createElement("h5");
+    var div = document.createElement("div");
+    var txt = document.createElement("h4");
 
     // Attribute
-    txt.setAttribute("class", "card-title");
+    div.setAttribute("class", "assess-title");
     txt.innerText = title;
     //
 
@@ -131,18 +137,42 @@ function createCardDesc(desc) {
     return txt;
 }
 
+function createCardFooter() {
+    var div = document.createElement("div");
+
+    // Set Attributes
+    div.setAttribute("class", "assess-footer d-flex flex-row");
+    // Append
+    
+    // Return
+    return div;
+}
+
+function createCardButton() {
+    
+}
+
 function createCardView(assessID) {
     var btn = document.createElement("a");
+    var btnInner = document.createElement("button");
+
+    var btnCont = document.createElement("div");
+
     var studID = document.querySelector("#cont_studID");
     console.log(studID);
 
     // Attribute
-    btn.setAttribute("class","btn btn-palette3");
-    btn.setAttribute("href","viewer.php?assessID="+assessID+"&studentID="+studID.value);
-    btn.setAttribute("onClick", "console.log('Test')");
-    btn.innerText = "TAKE ASSESSMENT";
+    btnCont.setAttribute("class","assess-button");
+    btn.setAttribute("href","quiz.php?assessID="+assessID+"&studentID="+studID.value);
+    // btn.setAttribute("onClick", "console.log('Test')");
+    btnInner.innerText = "TAKE ASSESSMENT";
     //
 
-    return btn;
+    // Append
+    btn.appendChild(btnInner);
+    btnCont.appendChild(btn);
+    //
+
+    return btnCont;
 }
 //

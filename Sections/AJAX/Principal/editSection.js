@@ -15,8 +15,6 @@ function editSection(schoolID, sectionID, sectionName, advisorID) {
             console.log(result);
 
             if (result == "true") {
-                document.querySelector("#cont_sections").innerHTML = "";
-                document.querySelector("#cont_modalsSection").innerHTML = "";
                 getSections();
                 getAvailableTeachersCreation(schoolID, "regInTeacherID"); // schoolID and targetElement
                 // getAvailableTeachers(); We need a new script to display the available teachers for the section creation

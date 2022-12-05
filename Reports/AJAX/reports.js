@@ -1,7 +1,7 @@
 // Obsolete Commands
-function getReports() {
+function getReports_obs() {
     // Search Data
-    var search = document.querySelector("#searchText");
+    var search = document.querySelector("#searchStudents");
     search = search.value;
     //
 
@@ -262,7 +262,7 @@ function getSection() { // This command needs a sectionID parameter, but will be
 function getStudents() { // This also needs sectionID
     var request = new XMLHttpRequest();
 
-    var search = document.querySelector("#searchText").value;
+    var search = document.querySelector("#searchStudents").value;
 
     request.open("POST", "AJAX/getStudents.php");
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -282,8 +282,11 @@ function getStudents() { // This also needs sectionID
                     if (i%5 == 0) {
                         var cardGroup = createCardGroup();
                     }
-                    var card = createCard("students-"+students[i]['id'], "", students[i]['fname'] + " " + students[i]['mname'] + " " + students[i]['lname'], "", "studentReport.php?userID="+students[i]['id'], "Get Reports", true);
 
+                    if (i >= students.length) {i = 0;}
+
+                    var card = createCard("students-"+students[i]['id'], "../mat_icons/tensai_profile.png", students[i]['fname'] + " " + students[i]['mname'] + " " + students[i]['lname'], "", "studentReport.php?userID="+students[i]['id'], "Get Reports", true);
+                    
                     cardGroup.appendChild(card);
                     cont_students.appendChild(cardGroup);
                 }
@@ -309,21 +312,38 @@ function downloadReport() { // This uses the jsPDF & html2Canvas library to work
 
     // Get element
     var elementHTML = document.querySelector("#cont_report");
+    // console.log(elementHTML.innerHTML);
+    var clean = DOMPurify.sanitize(elementHTML.innerHTML);
+    // console.log(clean);
+
+    // document.write();
+
+    elementHTML.innerHTML = clean;
+    console.log("innerHTML'd");
+    // return null;
 
     var pagewidth = doc.internal.pageSize.getWidth() / 1.1;
+    console.log(pagewidth);
     var pageheight = doc.internal.pageSize.getHeight();
+    console.log(pagewidth);
+
+    var xval = doc.internal.pageSize.getWidth() - pagewidth;
+    var yval = doc.internal.pageSize.getHeight() - pageheight;
 
     // var imgHeight = elementHTML.height() * 25.4 / 96;
 
-    doc.html(elementHTML, {
+    doc.html(clean, {
         callback:function(doc) {
             var date = new Date().toLocaleDateString();
             doc.save('report-'+date);
         },
-        x: 26,
-        y: 16,
+        orientation: 'l',
+        x: 0,
+        y: 0,
         width: pagewidth,
-        windowWidth: 720
+        height: pageheight,
+        windowWidth:597.6,
+        windowHeight: 842.4
     });
 }
 

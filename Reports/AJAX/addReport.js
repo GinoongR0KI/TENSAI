@@ -24,12 +24,12 @@ function addReport() {
 
             if (result == "true") {
                 generateToast("error", "Notification", "Add", "Successfully Saved Score");
-                window.location.href="assessmentDashboard.php";
+                window.location.href="dashboard.php";
             } else {
                 generateToast("error", "Notification", "Add", "Error: Failed to Save Score");
                 btn.innerText = "GO HOME";
                 btn.classList.replace("btn-palette2", "btn-redcolor");
-                btn.parentNode.setAttribute("href", "assessmentDashboard.php");
+                btn.parentNode.setAttribute("href", "dashboard.php");
                 btn.disabled = false;
             }
         }

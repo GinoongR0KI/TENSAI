@@ -1,0 +1,68 @@
+
+/*Dashboard Header*/
+.dashboard-head{
+    background-color: #FFABE5;
+    background-size: cover;
+    min-height: 30vh;
+    min-width: 70vw;
+    position: relative;
+    color: #053742;
+    z-index: -1;
+    top: 5vh;
+}
+
+.head-overlay{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(232, 240, 242, .4);
+}
+
+/*Dashboard Profile Wrapper*/
+.profile-wrapper{
+    width: 30vw;
+    background-color: #C7F5FF;
+}
+
+.profile-img{
+    border: 2px solid gray;
+    width: 5rem;
+    height: 5rem;
+}
+
+/*Recent Activity*/
+.recent-activity{
+    border: 2px solid black;
+    height: 30vh;
+}
+
+/*Create Buttons*/
+.create{
+    height: 20vh;
+    width: 10vw;
+    background-color: transparent;
+    border: none;
+    border-radius: .8rem;
+    -webkit-border-radius: .8rem;
+    -moz-border-radius: .8rem;
+    -ms-border-radius: .8rem;
+    -o-border-radius: .8rem;
+}
+
+#create-lesson{
+    background-color: #FFABE5;
+}
+#create-assessment{
+    background-color: #F6FCAE;
+}
+
+#create-lesson:hover, #create-assessment:hover{
+    background-color: #EAB4F8;
+}
+
+/*Report Wrapper*/
+.report-wrapper{
+    border: 2px solid black;
+    height: 30vh;
+    width: 70vw;
+}

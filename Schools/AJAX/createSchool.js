@@ -8,6 +8,16 @@ function createSchool() {
     var principal = document.querySelector("#regInPrincipal").value;
     var municipality = document.querySelector("#regInMunicipality").value;
 
+    if (!id) {
+        generateToast("createToast", "Notification", "Create", "Error: Please input the school ID");
+        return null;
+    }
+
+    if (!name) {
+        generateToast("createToast", "Notification", "Create", "Error: Please enter school name");
+        return null;
+    }
+    
     if (municipality == "null") {
         generateToast("createToast", "Notification", "Create", "Error: Please choose a Municipality");
         return null;

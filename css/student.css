@@ -1,89 +1,235 @@
-.tensai-body{
-    background-size: cover;
-    min-height: 100vh;
-    position: relative;
-    color: #fff;
+body{
+    background-color: #371B58;
 }
 
-.tensai-head, .tensai-text{
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
+.rina-container img, .profile-container img{
+    width: 5rem;
 }
 
-.tensai-head{
-    border-bottom: 3px solid #A2DBFA;
-    margin: 5px;
+.profile-container img{
+    width: 3rem;
+    margin: 1rem;
 }
 
-.custBtn {
-    background-color: rgba(109, 178, 210, 0.5);
+.title-container{
+    width: 18rem;
 }
 
-.color-overlay{
+.lesson-button img, .assessment-button img{
+    width: 15rem;
+}
+
+.lesson-button img:hover, .assessment-button img:hover{
+    filter: drop-shadow(0 0 5rem rgb(252, 200, 248));
+    transition: ease .8s;
+    -webkit-transition: ease .8s;
+    -moz-transition: ease .8s;
+    -ms-transition: ease .8s;
+    -o-transition: ease .8s;
+    -webkit-filter: drop-shadow(0 0 2rem rgb(252, 200, 248));
+}
+
+.lesson-button, .assessment-button{
     position: absolute;
-    width: 100%;
-    height: 100%;
-    /* background-color: rgb(5, 55, 66, .5); */
-    background-color: rgb(229, 199, 136, 0.50);
+    top: 35%
 }
 
-.imgIcons {
-    width:15vw;
-}
-
-.slide {
-  transition:1s;
-}
-
-/*Lesson*/
-
-
-/*Assessment*/
-.assessment-body{
-    box-sizing: border-box;
-}
-.assessment-container{
-    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
-    min-width: 90vw;
-    min-height: 80vh;
-    overflow: hidden;
-  }
-  .assessment-header{
+/*Student Profile*/
+.profile{
+    background-color: rgb(128, 72, 156, 0.8);
     padding: 2rem;
-    background-color: rgb(162, 219, 250, 0.5);
-  }
-  h2{
-    text-align: center;
-    margin: 0;
-  }
-  
-  ul{
-    /* list-style-type: none; */
-    padding: 2rem;
-  }
-  ul li{
-    font-size: 1.2rem;
-    margin: 1rem 0;
-  }
-  ul li label{
-    cursor: pointer;
-  }
-  button .submit{
-    background-color: #03cae4;
-    color: #fff;
+    min-height: 95vh;
+
+}
+
+.profile-img img{
+    width: 8rem;
+}
+
+.back img{
+    width: 2rem;
+}
+
+.student-name h4, .student-info h6{
+    color: #FFF;
+}
+
+.student-footer button{
     border: none;
-    display: block;
-    width: 100%;
-    cursor: pointer;
-    font-size: 1.1rem;
-    font-family: inherit;
+    color: #FFF;
+    background-color: rgb(255, 143, 177);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+}
+
+.setting_1, .setting_2, .setting_3{
+    padding: 2rem;
+}
+
+.student-footer a{
+    text-decoration: none;
+    color: #FFF;
+}
+/*lessons page*/
+.lesson-thumbnail img{
+    width: 5rem;
+}
+
+.lesson-card{
+    background-color: #fff;
     padding: 1.3rem;
-  }
-  button .submit:hover{
-    background-color: #04adc4;
-  }
-  button .submit:focus{
-    outline: none;
-    background-color: #053742;
-  }
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+    cursor:pointer;
+}
+
+.lesson-list::-webkit-scrollbar{
+    width: 0.2rem;
+}
+
+.lesson-list::-webkit-scrollbar-track{
+    background-color: rgb(91, 75, 138);
+}
+
+.lesson-list::-webkit-scrollbar-thumb{
+    background-color: rgb(76, 53, 117);
+    border-radius: 0.3rem;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem;
+}
+
+.show-lesson{
+    top: 15%;
+    right: 15%;
+}
+
+.lesson-thumbs{
+    margin-right: 3rem;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+}
+
+.thumbs-footer button{
+    border: none;
+    background-color: rgb(255, 136, 75);
+    color: #fff;
+    padding: 1rem;
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+}
+
+.thumbs-footer button:hover{
+    border: .1rem solid rgb(255, 136, 75);
+    color: rgb(255, 136, 75);
+    background-color: #fff;
+}
+
+/*assessment page*/
+.assessment-list{
+    /*overflow-x: scroll;*/
+    margin-top: 10%;
+}
+
+.assessment-card{
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+}
+
+.assess-thumbnail img{
+    width: 15rem;
+}
+
+.assess-footer button{
+    border: none;
+    background-color: rgb(255, 136, 75);
+    color: #fff;
+    margin-left: 15vw;
+    padding: 1rem;
+    border-radius: .2rem;
+    -webkit-border-radius: .2rem;
+    -moz-border-radius: .2rem;
+    -ms-border-radius: .2rem;
+    -o-border-radius: .2rem;
+}
+
+.assess-footer button:hover{
+    border: .1rem solid rgb(255, 136, 75);
+    background-color: #fff;
+    color: rgb(255, 136, 75);
+}
+
+/*student assessment result*/
+.result-container{
+    margin-top: 5vh;
+    background-color: #fff;
+    padding: 5rem;
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+}
+
+.result-footer button{
+    border: none;
+    background-color: rgb(0, 255, 209);
+    color: rgb(5, 55, 66);
+    padding: 1rem 3rem 1rem 3rem;
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+}
+
+.result-footer button:hover{
+    border: .1rem solid rgb(0, 255, 209);
+    color: rgb(5, 55, 66);
+    background-color: #fff;
+}
+
+/*Lesson Viewer*/
+.slide-button-left button, .slide-button-right button{
+    border: none;
+    background-color: transparent;
+}
+
+.lesson-output{
+    width: 1000px;
+    height: 550px;
+    border: 5px solid white;
+}
+
+.lesson-info button{
+    border: none;
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+    background-color: #FF8FB1;
+    padding: 1rem;
+    margin: 1rem;
+}

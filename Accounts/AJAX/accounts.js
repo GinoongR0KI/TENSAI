@@ -1,4 +1,5 @@
-function getAccounts() {
+// Obsolete
+function getAccounts_Obs() {
     var request = new XMLHttpRequest();
 
     //
@@ -24,7 +25,9 @@ function getAccounts() {
             cont_modals = document.querySelector("#cont_modals");
             cont_modals.innerHTML = "";
 
-            try {
+            if (results[0] === "") {
+                generateToast("getAccError", "Notification", "Get Account", "Error: No Results Found");
+            } else {
                 var accounts = JSON.parse(results[0]);
 
                 for (i = accounts.length-1; i >= 0; i--) {
@@ -243,15 +246,6 @@ function getAccounts() {
                     //
 
                 }
-            } catch (e) {
-                var row = createRow();
-
-                var text = document.createTextNode("No Results Found");
-                row.appendChild(row);
-
-                cont_accounts.appendChild(row);
-
-                generateToast("getAccError", "Notification", "Get Account", "Error: No Results Found");
             }
 
         }
@@ -259,8 +253,105 @@ function getAccounts() {
 
 }
 
+// Get Accounts
+function getAccounts() {
+    var request = new XMLHttpRequest();
+
+    // Searching
+    var search = document.querySelector("#searchText");
+    //
+
+    request.open("POST", "../Accounts/AJAX/getAccounts.php");
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            var result = this.response;
+            console.log(result);
+
+            cont_accounts = document.querySelector("#cont_accounts");
+            cont_accounts.innerHTML = "";
+            cont_modals = document.querySelector("#cont_modals");
+            cont_modals.innerHTML = "";
+
+            try {
+                var accounts = JSON.parse(result);
+
+                for (i = 0; i < accounts.length; i++) {
+                    // Row
+                    var row = createRow();
+
+                        // Data
+                            // names
+                    fname = accounts[i]['fname'];
+                    mname = accounts[i]['mname'];
+                    lname = accounts[i]['lname'];
+                            //
+
+                            // Actions
+                    var accStat = accounts[i]['isActivated'];
+                    if (accStat == 0) {
+                        accStat = "Not Activated";
+                    } else if (accStat == 1) {
+                        accStat = "Active";
+                    } else if (accStat == -1) {
+                        accStat = "Terminated";
+                    }
+                            //
+
+                    var td_id = createData(accounts[i]['id']);
+                    var td_fname = createData(!fname ? "Not Set" : fname);
+                    var td_mname = createData(!mname ? "Not Set" : mname);
+                    var td_lname = createData(!lname ? "Not Set" : lname);
+                    var td_email = createData(accounts[i]['email']);
+                    var td_utype = createData(accounts[i]['uType']);
+                    var td_dcreate = createData(accounts[i]['dateCreated']);
+                    
+                    var td_status = createData(accStat);
+                    var td_action = addActions_Accounts("#deleteAccount", accounts[i]['id'], accStat);
+                    // var td_action = createActions_Accounts("#modal-del"+accounts[i]['id'], "#modal-view"+accounts[i]['id'], accStat);
+
+                        // Append
+                    appendRow(row, td_id, td_fname, td_mname, td_lname, td_email, td_utype, td_dcreate, td_status, td_action);
+
+                    cont_accounts.appendChild(row);
+                    
+
+                    // Modals
+                    // var delModal = createModal("modal-del"+accounts[i]['id'], "Account Termination");
+                    // var del = getModalElements(delModal);
+                    // var delTxt = document.createTextNode("Are you sure you want to deactivate this account?");
+                    // del[3].appendChild(delTxt);
+                    // del[4].appendChild(addBtn_Cancel());
+                    // del[4].appendChild(addBtn_Terminate(accounts[i]['email']));
+
+                    // var viewModal = createModal("modal-view"+accounts[i]['id'], "View Account");
+
+
+                    // cont_modals.appendChild(delModal);
+                    // var delModal = createModal("modal-del"+accounts[i]['id'], "Account Termination");
+                    // var viewModal = createModal("modal-view"+accounts[i]['id'], "View Account");
+
+                    // cont_modals.appendChild(delModal);
+                    // cont_modals.appendChild(viewModal);
+                    
+                }
+            } catch (e) {
+                generateToast("getAccError", "Notification", "Get Account", "Error: No Results Found");
+            }
+        }
+    };
+
+    request.send("search="+search.value);
+}
+
+function account_deactivate(accID) {
+    delBtn = document.querySelector("#btn_deactivate");
+    delBtn.setAttribute("onClick", "terminateAccount("+accID+")");
+}
+
 // Appending
-function appendRow(row, id, fname, mname, lname, email, uType, dateCreated, status) {
+function appendRow_Obs(row, id, fname, mname, lname, email, uType, dateCreated, status) {
     row.appendChild(id);
     row.appendChild(fname);
     row.appendChild(mname);
@@ -269,6 +360,18 @@ function appendRow(row, id, fname, mname, lname, email, uType, dateCreated, stat
     row.appendChild(uType);
     row.appendChild(dateCreated);
     row.appendChild(status);
+}
+
+function appendRow(row, id, fname, mname, lname, email, utype, dcreate, status, action) {
+    row.appendChild(id);
+    row.appendChild(fname);
+    row.appendChild(mname);
+    row.appendChild(lname);
+    row.appendChild(email);
+    row.appendChild(utype);
+    row.appendChild(dcreate);
+    row.appendChild(status);
+    row.appendChild(action);
 }
 
 // Editable Appending
@@ -306,6 +409,32 @@ function appendModal(modal, dialog, content, header, body, footer) {
 }
 //
 
+// 
+function terminateAccount(accID) {
+    var request = new XMLHttpRequest();
+
+    request.open("POST", "AJAX/deleteAccount.php");
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            var result = this.response;
+            console.log(result);
+
+            if (result == "true") {
+                generateToast("terminateAccount", "Notification", "Termination", "Account Terminated Successfully");
+                getAccounts();
+            } else {
+                generateToast("terminateAccount", "Notification", "Termination", "Error: Failed to Terminate Account");
+            }
+        }
+    };
+
+    request.send("accID="+accID); 
+}
+//
+
+// GET DETAILS
 function getAccountsDetails(email, uType) {
     var request = new XMLHttpRequest();
     var details;

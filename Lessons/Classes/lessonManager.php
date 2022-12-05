@@ -33,7 +33,7 @@ class lessonManager {
             case "Admin":
                 $selLessons = "SELECT * FROM matLessons";
                 if ($search != null && $search != "") {
-                    $selLessons .= " WHERE id LIKE '$search%' OR title LIKE '$search%' OR description LIKE '$search%'";
+                    $selLessons .= " WHERE (id LIKE '$search%' OR title LIKE '%$search%' OR description LIKE '%$search%')";
                 }
                 $selLessons .= ";";
 
@@ -68,7 +68,7 @@ class lessonManager {
                         $tID = $resultsT['id'];
                         $selLessons = "SELECT * FROM matLessons WHERE teacherID = $tID"; // select all the materials from that teacher
                         if ($search != null && $search != "") {
-                            $selLessons .= " AND id LIKE '$search%' OR title LIKE '$search%' OR description LIKE '$search%'";
+                            $selLessons .= " AND (id LIKE '$search%' OR title LIKE '%$search%' OR description LIKE '%$search%')";
                         }
                         $selLessons .= ";";
                         $selLQ = $this->db->query($selLessons);
@@ -90,7 +90,7 @@ class lessonManager {
                 $uID = $_SESSION['id'];
                 $selLessons = "SELECT * FROM matLessons WHERE teacherID = $uID";
                 if ($search != null && $search != "") {
-                    $selLessons .= " AND id LIKE '$search%' OR title LIKE '$search%' OR description LIKE '$search%'";
+                    $selLessons .= " AND (id LIKE '$search%' OR title LIKE '%$search%' OR description LIKE '%$search%')";
                 }
                 $selLessons .= ";";
                 $selLQ = $this->db->query($selLessons);

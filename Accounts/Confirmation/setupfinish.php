@@ -73,7 +73,6 @@ switch ($uType) {
 
 //
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,9 +94,12 @@ switch ($uType) {
                 <i class="bi bi-check-circle" style="color: #5FD068; font-size: 6rem;"></i>
             </div>
             <div class="successful-footer">
-            <a href="../../login.php"><button type="button" class="btn btn-outline-palette2">GO TO LOG IN PAGE</button></a>
+                <a href="../../login.php"><button type="button" class="btn btn-outline-palette2">GO TO LOG IN PAGE</button></a>
             </div>
         </div>
+
+   
+
     
 </body>
 </html>

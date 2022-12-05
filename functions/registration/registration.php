@@ -1,5 +1,6 @@
 <?php
 
+if(session_status() === PHP_SESSION_NONE) {session_start();} // Checks and activates the session
 require_once("../../Email/tensaimailer.php");
 
 class registration {
@@ -10,23 +11,35 @@ class registration {
         $this->db = $db;
     }
 
-    function createAccount($email, $uType, $schoolID) {
+    function createAccount($email, $schoolID) {
         // Find if account exists
         // Insert new account if it does not
         // send an email
 
         // SQL Injection Prevention
         $email = mysqli_real_escape_string($this->db,$email);
-        $uType = mysqli_real_escape_string($this->db,$uType);
-        $schoolID = mysqli_real_escape_string($this->db,$schoolID);
+        $uType = null;
+        $schoolID = mysqli_real_escape_string($this->db, $schoolID);
         //
 
         if ($email == null || $email == "") {return false;} // Check if the email is filled up
-        if ($uType == "null") {return false;} // check if the uType is not null
-        if ($schoolID == "null" || $schoolID == null) {return false;}
+        if ($schoolID == null || $schoolID == "null") {return false;}
 
         if (!$this->accountExists($email)) {
             // Insert a new account here
+            switch ($_SESSION['uType']) { // Determine which user type this account will be based on the user type of the account that created it
+                case "Admin":
+                    $uType = "Principal";
+                break;
+                case "Principal":
+                    $uType = "Teacher";
+                    $schoolID = $_SESSION['schoolID'];
+                break;
+                case "Teacher":
+                    $uType = "Student";
+                    $schoolID = $_SESSION['schoolID'];
+                break;
+            }
             $ins = "INSERT INTO uAccounts (email, uType, dateCreated, isActivated) VALUES ('$email', '$uType', now(), 0);";
             
             if ($this->db->query($ins)) {

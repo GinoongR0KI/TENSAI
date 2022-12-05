@@ -34,7 +34,7 @@
                 
                 <div style="background-color:rgba(185, 207, 255);color:rgba(15,31,88);">
                     <p>Please confirm your email address using the button below:</p>
-                    <a style='text-decoration:none; margin: 10px 15px; padding:10px 15px; border-radius:32px; color: #fff; background-color:rgba(15,31,88);' href='localhost/TENSAI/Accounts/Confirmation/confirm.php?email=%s&role=%s&code=%s'> Confirm Email </a>
+                    <a style='text-decoration:none; margin: 10px 15px; padding:10px 15px; border-radius:32px; color: #fff; background-color:rgba(15,31,88);' href='localhost/TENSAIFrontend/Accounts/Confirmation/confirm.php?email=%s&role=%s&code=%s'> Confirm Email </a>
                 </div>
 
             </div>

@@ -1,28 +1,24 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"> 
-    <link rel="stylesheet" href="../css/custom.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/style.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TENSAI Lesson Creator</title>
+    <title>TENSAI | Create Lesson</title>
 
-    <style>.dragging{opacity: 0.5;}</style>
+    <!-- <style>.dragging{opacity: 0.5;}</style> -->
 
     <script src="../javascript/pager.js"></script>
 
-    <script defer src="AJAX/draggableTabs.js"></script>
-    <script defer src="AJAX/controlFunctions.js"></script>
+    <script defer src="AJAX/Admin/draggableTabs.js"></script>
+    <script defer src="AJAX/Admin/controlFunctions.js"></script>
 
-    <script src="AJAX/saveLesson.js"></script>
-    <script src="AJAX/publishLesson.js"></script>
+    <script src="AJAX/Admin/saveLesson.js"></script>
+    <script src="AJAX/Admin/publishLesson.js"></script>
 
     <script src="../javascript/toaster.js"></script>
 </head>
@@ -37,55 +33,58 @@
     <!-- Toast -->
 
     <!--Lesson Nav Editor-->
-    <div class="lesson-content d-flex flex-row bg-palette3 p-2 position-relative"> <!-- Top most container -->
+    <!-- Top most container -->
+    <div class="lesson-content d-flex flex-row bg-secondary p-2 position-relative">
         <div class="lesson-title d-flex flex-row">
             <h3 class="fs-3 ms-3 me-4" id="lessonTitle">Lesson Creator</h3>
-            <button type="button" class="btn btn-palette2" data-bs-toggle="modal" data-bs-target="#lessonEditor"><i class="bi bi-pencil-square"></i></button> <!-- Used to toggle the lesson general info modal -->
+            <button type="button" class="btn btn-palette1" data-bs-toggle="modal" data-bs-target="#lessonEditor"><i class="bi bi-pencil-square"></i></button> <!-- Used to toggle the lesson general info modal -->
         </div>
 
         <div class="button-container d-flex flex-row position-absolute end-0">
-            <button type="button" class="btn btn-palette2 me-2" data-bs-toggle="modal" data-bs-target="#confirmDraft"><i class="bi bi-paperclip"></i>Draft</button> <!-- Save the whole document -->
-            <button type="button" class="btn btn-palette2 me-2" data-bs-toggle="modal" data-bs-target="#confirmPublish"><i class="bi bi-box-arrow-up"></i>Publish</button> <!-- Save & Publish -->
+            <button type="button" class="btn btn-button me-2" data-bs-toggle="modal" data-bs-target="#confirmDraft"><i class="bi bi-paperclip"></i>Draft</button> <!-- Save the whole document -->
+            <button type="button" class="btn btn-button me-2" data-bs-toggle="modal" data-bs-target="#confirmPublish"><i class="bi bi-box-arrow-up"></i>Publish</button> <!-- Save & Publish -->
         </div>
     </div>
 
+    <!-- Main Panels -->
     <div class="container-fluid">
         <div class="row">
-
             <!--Slide Panel-->
-            <div class="col-2 d-flex flex-column justify-content-start align-content-start bg-palette1 vh-100 position-relative"> <!-- Side panel -->
-                <div class="back-btn"> <!-- Go back to lesson Page -->
-                    <a href="manage.php">
-                        <button type="button" class="btn btn-outline-palette3 p-1 mt-3"><i class="bi bi-box-arrow-in-left"></i>BACK</button>
-                    </a>
-                </div>
-
-                <hr>
-
-                <nav class="navbar bg-palette3 justify-content-center "> <!-- Slides Container -->
-                    <div class="container-fluid">
-                        <ul class="navbar-nav cont_draggables" role="tablist" style="width:100%">
-                            <li class="nav-item draggable" draggable="true">
-                                <button class="nav-link slideBtn active" id="page1-tab" data-bs-toggle="tab" data-bs-target="#page-1" type="button" role="tab" aria-controls="home" aria-selected="true" style="width:100%">
-                                    <i class="bi bi-card-text test1"><script>document.querySelector(".test1").innerText = Date.now()</script></i>
-                                </button>
-                            </li>
-                            <li class="nav-item draggable" draggable="true">
-                                <button class="nav-link slideBtn" id="page2-tab" data-bs-toggle="tab" data-bs-target="#page-2" type="button" role="tab" aria-controls="home" aria-selected="true" style="width:100%">
-                                    <i class="bi bi-card-text test2"><script>document.querySelector(".test2").innerText = Date.now()</script></i>
-                                </button>
-                            </li>
-                        </ul>
-
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 min-vw-20">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 m-3 rounded-2 position-fixed" style="background-color: #4C3575; height: 85vh">
+                    <div class="back-btn"> <!-- Go back to lesson Page -->
+                        <a href="manage.php">
+                            <button type="button" class="btn btn-outline-palette3 p-1 mt-3"><i class="bi bi-box-arrow-in-left"></i>BACK</button>
+                        </a>
                     </div>
 
-                </nav>
+                    <hr>
 
-                <button type="button" class="btn btn-outline-palette3 position-absolute bottom-0 ms-3 mb-3" onClick="addPage()"><i class="bi bi-plus-circle"></i> Add Slide</button>
+                    <nav class="navbar bg-palette3 justify-content-center "> <!-- Slides Container -->
+                        <div class="container-fluid rounded-1 bg-secondary" style="height:60vh; overflow:auto">
+                            <ul class="navbar-nav cont_draggables" role="tablist" style="width:100%;">
+                                <li class="nav-item draggable" draggable="true">
+                                    <button class="nav-link slideBtn active btn" id="page1-tab" data-bs-toggle="tab" data-bs-target="#page-1" type="button" role="tab" aria-controls="home" aria-selected="true" style="width:100%">
+                                        <i class="bi bi-card-text test1"><script>document.querySelector(".test1").innerText = Date.now()</script></i>
+                                    </button>
+                                </li>
+                                <li class="nav-item draggable" draggable="true">
+                                    <button class="nav-link slideBtn btn" id="page2-tab" data-bs-toggle="tab" data-bs-target="#page-2" type="button" role="tab" aria-controls="home" aria-selected="true" style="width:100%">
+                                        <i class="bi bi-card-text test2"><script>document.querySelector(".test2").innerText = Date.now()</script></i>
+                                    </button>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </nav>
+
+                    <button type="button" class="btn btn-outline-palette3 position-absolute bottom-0 ms-3 mb-3" onClick="addPage()"><i class="bi bi-plus-circle"></i> Add Slide</button>
+                </div>
                 
             </div>
 
-            <!--Format Tab-->
+            <!-- Editor Panel -->
             <div class="col mt-4"> <!-- Editor Tools -->
                 <nav> <!-- Editor Tab List -->
                     <div class="nav nav-tabs mw-100 text-palette1" id="tab" role="tablist">
@@ -106,7 +105,7 @@
                 <!--Tab Content-->
                 <div class="tab-content mt-4" id="nav-tabContent"> <!-- List of Tab Containers -->
                     <!--Edit Tab-->
-                    <div class="tab-pane fade show active" id="editTab" role="tabpanel" aria-labelledby="edit-tab" tabindex="0"> <!-- Edit Tab Content -->
+                    <div class="tab-pane fade show active" id="editTab" role="tabpanel" aria-labelledby="" tabindex="0"> <!-- Edit Tab Content -->
                         <div class="d-flex flex-row"> <!-- Panel -->
 
                             <!--Font-->
@@ -160,10 +159,10 @@
                 
 
                     <!--Insert Tab-->
-                    <div class="tab-pane fade d-flex flex-row" id="insertTab" role="tabpanel" aria-labelledby="insert-tab" tabindex="0"> <!-- Insert Tab Content -->
-                        <div class="d-flex flex-row" style="display: block;">
+                    <div class="tab-pane fade d-flex flex-row" id="insertTab" role="tabpanel" aria-labelledby="" tabindex="0"> <!-- Insert Tab Content -->
+                        <div class="d-flex flex-row">
 
-                            <div class="accordion me-3" id="mediaTab"> <!-- Image -->
+                            <div class="accordion me-3" id="mediaImgTab"> <!-- Image -->
 
                                 <div class="accordion-item">
 
@@ -189,7 +188,7 @@
 
                             </div>
 
-                            <div class="accordion" id="mediaTab"> <!-- Video -->
+                            <div class="accordion" id="mediaVidTab"> <!-- Video -->
 
                                 <div class="accordion-item">
 
@@ -229,20 +228,21 @@
             
                 <!--Lesson Editor-->
                 <div class="row m-4 tab-content" id="cont_pageContents"> <!-- Convert this into a tab content div -->
-                    <!-- <div class="col" id="workspace" class="col d-flex" contenteditable="true" style="border: 0.1rem #053742 solid; min-height: 50vh;">
-                        Editable Workspace
-                    </div> -->
                     <div class="tab-pane fade show active" id="page-1" role="tabpanel" aria-labelledby="page1-tab" contenteditable="true" style="border: 0.1rem #053742 solid; min-height: 50vh;"></div>
                     <div class="tab-pane fade" id="page-2" role="tabpanel" aria-labelledby="page2-tab" contenteditable="true" style="border: 0.1rem #053742 solid; min-height: 50vh;"></div>
                 </div>
         
             </div>
+            
         </div>
 
     </div>
 
+
+
     <!--Modal Area-->
 
+    <!-- General Information Modal -->
     <div class="modal fade" id="lessonEditor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"> <!-- This is the Lesson's General Information -->
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -265,12 +265,13 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn" data-bs-dismiss="modal">CANCEL</button>
-                    <button type="button" class="btn btn-palette2" data-bs-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-button" data-bs-dismiss="modal">OK</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Draft Saving Confirmation Modal -->
     <div class="modal fade" id="confirmDraft" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"> <!-- Draft Button Modal -->
         <div class="modal-dialog modal-dialog-centered"> <!-- This modal is used for saving the document -->
             <div class="modal-content">
@@ -284,13 +285,14 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-palette2" data-bs-dismiss="modal" onClick="saveLesson('<?php echo $_GET['lessonID']; ?>')">YES</button>
+                    <button type="button" class="btn btn-button" data-bs-dismiss="modal" onClick="saveLesson('<?php echo $_GET['lessonID']; ?>')">YES</button>
                     <button type="button" class="btn" data-bs-dismiss="modal">NO</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Publishing Confirmation modal -->
     <div class="modal fade" id="confirmPublish" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"> <!-- This is the modal for saving and publishing the document -->
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -304,21 +306,17 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-palette2" data-bs-dismiss="modal" onClick="publishLesson('<?php echo $_GET['lessonID']; ?>')">YES</button>
+                    <button type="button" class="btn btn-button" data-bs-dismiss="modal" onClick="publishLesson('<?php echo $_GET['lessonID']; ?>')">YES</button>
                     <button type="button" class="btn" data-bs-dismiss="modal">NO</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script>
         loadGenInfo();
         loadPages();
     </script>
-
 </body>
 </html>

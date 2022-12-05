@@ -3,7 +3,7 @@
 if (session_status() === PHP_SESSION_NONE) {session_start();}
 
 require_once("../../functions/dbConn.php");
-require_once("../Classes/accountManager.php");
+require_once("../Classes/AccountManager.php");
 
 $accManager = new accountManager($db);
 

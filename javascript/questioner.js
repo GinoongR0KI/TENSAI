@@ -6,7 +6,7 @@ function loadGenInfo() {
 
     var request = new XMLHttpRequest();
 
-    request.open("POST", "AJAX/getAssessmentGeneralInfo.php");
+    request.open("POST", "AJAX/Admin/getAssessmentGeneralInfo.php");
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     request.onreadystatechange = function () {
@@ -50,7 +50,7 @@ function loadQuestions() {
 
     var request = new XMLHttpRequest();
 
-    request.open("POST", "AJAX/getQuestions.php");
+    request.open("POST", "AJAX/Admin/getQuestions.php");
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     request.onreadystatechange = function () {
@@ -101,7 +101,7 @@ function loadQuestions() {
                     cont_draggables.appendChild(slide);
                     cont_questions.appendChild(question);
 
-                    toggleType("#qType-"+curPageID, "#mc-"+curPageID, "#ident-"+curPageID);
+                    toggleType("#qType-"+curPageID, "#mc-"+curPageID, "#ident-"+curPageID, "#tof-"+curPageID);
                 } else {
                     for (i = 0; i < questions.length-1; i++) {
                         var curPageID = (uniqueID + i);
@@ -148,7 +148,7 @@ function loadQuestions() {
                                 optionNode.value = option.split("|sepOption|")[o];
                                 if (optionNode.value == answer) {console.log("true check");radioNode.checked = true;}
                             }
-                        } else {
+                        } else if (questionType == "Identification") {
                             var identNode = question.childNodes[2].childNodes[1].firstChild.firstChild;
 
                             var answers = assessment[0]['answer'].split("|sepData|")[1] != "" ? assessment[0]['answer'].split("|sepData|")[1] : assessment[0]['answer'].split("|sepData|")[0];
@@ -156,6 +156,23 @@ function loadQuestions() {
 
                             identNode.value = answer;
                             console.log(identNode);
+                        } else {
+                            console.log(question.childNodes[2].childNodes[2].firstChild.childNodes);
+                            var tofNodes = question.childNodes[2].childNodes[2].firstChild.childNodes;
+
+                            var answers = assessment[0]['answer'].split("|sepData|")[1] != "" ? assessment[0]['answer'].split("|sepData|")[1] : assessment[0]['answer'].split("|sepData|")[0];
+                            var answer = answers.split("|sepQuestion|")[i];
+
+                            for (o = 0; o < tofNodes.length; o++) {
+                                var optionNode = tofNodes[o].childNodes[1];
+                                console.log(optionNode);
+                                var radioNode = tofNodes[o].childNodes[0];
+                                console.log(radioNode);
+
+                                // optionNode.value = option.split("|sepOption|")[o];
+                                optionNode.value = optionNode;
+                                if (optionNode.textContent == answer) {radioNode.checked = true;}
+                            }
                         }
                                 //
 
@@ -166,7 +183,7 @@ function loadQuestions() {
                         cont_draggables.appendChild(slide);
                         cont_questions.appendChild(question);
 
-                        toggleType("#qType-"+curPageID, "#mc-"+curPageID, "#ident-"+curPageID);
+                        toggleType("#qType-"+curPageID, "#mc-"+curPageID, "#ident-"+curPageID, "#tof-"+curPageID);
                     }
                 }
 
@@ -204,7 +221,7 @@ function addQuestion() {
     cont_questions.appendChild(page);
     //
 
-    toggleType("#qType-"+uniqueID, "#mc-"+uniqueID, "#ident-"+uniqueID);
+    toggleType("#qType-"+uniqueID, "#mc-"+uniqueID, "#ident-"+uniqueID, "#tof-"+uniqueID);
 
     getQuestionsCount();
     getDraggables();
@@ -229,7 +246,7 @@ function createSlideButton(targetPage, pageID) {
 
     // Attributes
 
-    btn.setAttribute("class", "nav-link slideBtn");
+    btn.setAttribute("class", "nav-link slideBtn btn");
     btn.setAttribute("id", "page"+pageID+"-tab");
     btn.setAttribute("data-bs-toggle", "tab");
     btn.setAttribute("data-bs-target", "#"+targetPage);
@@ -244,22 +261,6 @@ function createSlideButton(targetPage, pageID) {
 
     return btn;
 }
-
-// function createNewPage(pageID) {
-//     var div = document.createElement("div");
-
-//     // Attributes
-//     div.setAttribute("class","tab-pane fade");
-//     div.setAttribute("id", "question-"+pageID);
-//     div.setAttribute("aria-labelledby","page"+pageID+"-tab");
-//     div.setAttribute("role","tabpanel");
-//     div.setAttribute("contenteditable","true");
-//     div.setAttribute("style","border: 0.1rem #053742 solid; min-height: 50vh;");
-//     //
-
-//     return div;
-// }
-
 
 function createQuestion(curPageID) {
     console.log("correct question");
@@ -294,6 +295,7 @@ function createQuestionHeader(currentID) {
     var optNull = document.createElement("option")
     var optMC = document.createElement("option")
     var optIdent = document.createElement("option")
+    var optToF = document.createElement("option");
 
     var controlDiv = document.createElement("div");
     var btnUndo = document.createElement("button");
@@ -306,7 +308,7 @@ function createQuestionHeader(currentID) {
 
     assessHead.setAttribute("class", "assessment-head d-flex flex-row");
     select.setAttribute("id", "qType-"+currentID);
-    select.setAttribute("onChange", "toggleType('#"+select.id+"', '#mc-"+currentID+"', '#ident-"+currentID+"')"); // Perform a script here that toggles the canvas depending on which question type is selected
+    select.setAttribute("onChange", "toggleType('#"+select.id+"', '#mc-"+currentID+"', '#ident-"+currentID+"', '#tof-"+currentID+"')"); // Perform a script here that toggles the canvas depending on which question type is selected
         // Options
     optNull.setAttribute("value","null");
     optNull.disabled = true;
@@ -318,6 +320,9 @@ function createQuestionHeader(currentID) {
 
     optIdent.setAttribute("value","Identification");
     optIdent.innerText = "Identification";
+
+    optToF.setAttribute("value", "True / False");
+    optToF.innerText = "True or False";
         //
 
     controlDiv.setAttribute("class", "undo-redo d-flex flex-row position-absolute end-0 me-3");
@@ -344,6 +349,7 @@ function createQuestionHeader(currentID) {
     select.appendChild(optNull);
     select.appendChild(optMC);
     select.appendChild(optIdent);
+    select.appendChild(optToF);
 
     // controlDiv.appendChild(btnUndo);
     // controlDiv.appendChild(btnRedo);
@@ -417,6 +423,17 @@ function createQuestionAnswers(currentID) {
 
     var txtInIdent = document.createElement("input");
 
+    //
+
+    // True or False
+    var tofDiv = document.createElement("div");
+    var tofInner = document.createElement("div");
+        // Choices
+    var trueDiv = document.createElement("div");
+    var trueRad = document.createElement("input");
+
+    var falseDiv = document.createElement("div");
+    var falseRad = document.createElement("input");
     //
 
 
@@ -514,12 +531,42 @@ function createQuestionAnswers(currentID) {
             //
         //
 
+        // True or False
+    tofDiv.setAttribute("id", "tof-"+currentID);
+
+    tofInner.setAttribute("class", "choice row d-flex flex-row justify-content-center");
+
+    trueDiv.setAttribute("class", "btn btn-palette1 m-2 p-4");
+    trueRad.setAttribute("type", "radio");
+    trueRad.setAttribute("name", "question"+currentID+"-option");
+
+    falseDiv.setAttribute("class", "btn btn-palette1 m-2 p-4");
+    falseRad.setAttribute("type", "radio");
+    falseRad.setAttribute("name", "question"+currentID+"-option");
+
+            // Appending
+    trueDiv.appendChild(trueRad);
+    trueDiv.appendChild(document.createTextNode("TRUE"));
+
+    falseDiv.appendChild(falseRad);
+    falseDiv.appendChild(document.createTextNode("FALSE"));
+
+    tofInner.appendChild(trueDiv);
+    tofInner.appendChild(falseDiv);
+
+    tofDiv.appendChild(tofInner);
+            //
+
+
+        //
+
     //
 
     // Appending
 
     div.appendChild(mcDiv);
     div.appendChild(identDiv);
+    div.appendChild(tofDiv);
     //
 
     return div;
@@ -574,7 +621,7 @@ function deleteQuestion() {
         slideBtn.classList.add("active");
         question.classList.add("show"); question.classList.add("active");
 
-        toggleType("#qType-"+uniqueID, "#mc-"+uniqueID, "#ident-"+uniqueID);
+        toggleType("#qType-"+uniqueID, "#mc-"+uniqueID, "#ident-"+uniqueID, "#tof-"+uniqueID);
 
     }
     //
@@ -583,16 +630,19 @@ function deleteQuestion() {
     getDraggables();
 }
 
-function toggleType(selectEl, mcEl, identEl) {
+function toggleType(selectEl, mcEl, identEl, tofEl) {
     selectEl = document.querySelector(selectEl);
     mcEl = document.querySelector(mcEl);
     identEl = document.querySelector(identEl);
+    tofEl = document.querySelector(tofEl);
 
     mcEl.style.display = selectEl.value == "Multiple Choice" ? "block" : "none";
     identEl.style.display = selectEl.value == "Identification" ? "block" : "none";
+    tofEl.style.display = selectEl.value == "True / False" ? "block" : "none";
 
     console.log(mcEl.style.display);
     console.log(identEl.style.display);
+    console.log(tofEl.style.display);
 }
 
 function getQuestionsCount() {

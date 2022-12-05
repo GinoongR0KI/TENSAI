@@ -2,7 +2,7 @@
 
 // Import PHP Scripts
 require_once("../../functions/dbConn.php");
-require_once("../../functions/school/schoolManager.php");
+require_once("../Classes/schoolManager.php");
 //
 
 // Variables

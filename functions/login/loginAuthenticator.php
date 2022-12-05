@@ -26,7 +26,7 @@ class loginAuthenticator {
                 if ($results['isActivated'] == true) {
                     if (password_verify($password, $results['password'])) { // Checks if the password matches here.
                         // If this is correct, create the sessions for the account.
-                        // echo "Login Successful";
+                        echo "Login Successful";
                         $_SESSION['isLoggedTENSAI'] = true;
                         $_SESSION['id'] = $results['id'];
                         $_SESSION['email'] = $results['email'];
@@ -108,7 +108,7 @@ class loginAuthenticator {
             }
 
         } else { // If there is no account found
-            return "There is no account found";
+            return "Enter a valid email address";
         }
 
         $this->db->close();

@@ -1,0 +1,68 @@
+//Navigation
+$nav-pills-link-active-bg: #C7F5FF;
+$nav-pills-link-active-color: #4C3575;
+$nav-link-color: #FFFFFF;
+$nav-link-hover-color: #FFABE5; 
+
+$nav-tabs-link-active-color: #4C3575;
+$nav-tabs-border-color: #4C3575;
+$nav-tabs-link-active-border-color: #4C3575;
+$nav-tabs-link-hover-border-color: #FFABE5;
+
+//Table
+$table-hover-bg: #C7F5FF;
+
+//Import functions and variables
+@import"../node_modules/bootstrap/scss/functions";
+@import"../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/utilities";
+
+//main color palette
+$tensai-palette:(
+    "palette1": #FFABE5,
+    "palette2": #C7F5FF,
+    "palette3": #EAB4F8,
+    "palette4": #F6FCAE,
+    "button": #D89FFF,
+    "navbg": #4C3575
+);
+
+//merge
+$theme-colors: map-merge($tensai-palette, $theme-colors);
+
+
+//navtabs style
+.nav-pills {
+    color: #4C3575;
+}
+//utilities
+$utilities: map-merge(
+    $utilities, (
+        //viewport height
+        "min-viewport-height": (
+            property: min-height,
+            class: min-vh,
+            values: (95: 95vh, 60: 60vh, 30: 30vh)
+        ),
+
+        //viewport width
+        "min-viewport-width": (
+            property: min-width,
+            class: min-vw,
+            values: (20: 20vw, 10: 10vw)
+          ),
+
+          //top
+        "top": (
+            property: top,
+            values: (90: 90vh)
+        ),
+    )
+);
+
+
+//import bootstrap 
+@import "../node_modules/bootstrap/scss/utilities/api";
+@import "../node_modules/bootstrap/scss/bootstrap";

@@ -20,8 +20,7 @@ function loadLessons() {
             cont_lessons.innerHTML = "";
             //
 
-
-            if (result != null && result != "" && result != "[]") {
+            try {
                 var lesson = JSON.parse(result);
 
                 for (i = 0; i < lesson.length; i++) {
@@ -35,7 +34,6 @@ function loadLessons() {
                     
                     // Process Data
                     var sepTitle = title.split("|sepData|");
-                    console.log(sepTitle);
                     title = sepTitle[0];
                     console.log(title);
 
@@ -44,24 +42,25 @@ function loadLessons() {
                     //
 
                     // Cards
-                    var card = createCard();
+                    var card = createCard(title, desc, "viewer.php?lessonID="+lessonID);
                     
                     var cardImg = createCardImg();
-                    var cardBody = createCardBody();
+                    
 
                     var cardTitle = createCardTitle(title);
-                    var cardDesc = createCardDesc(desc);
-                    var cardBtn = createCardView(lessonID);
+                    
 
                         // Append
-                    appendCard(card, cardImg, cardBody, cardTitle, cardDesc, cardBtn);
+                    appendCard(card, cardImg, cardTitle);
                         //
                     //
 
                     cont_lessons.appendChild(card);
                 }
+            } catch(e) {
+                // var txt = document.createTextNode("No Lessons Available");
+                // cont_lessons.appendChild(txt);
 
-            } else {
                 generateToast("loadError", "Notification", "Load", "Error: No Available Lessons");
             }
         }
@@ -71,70 +70,57 @@ function loadLessons() {
 }
 
 // Appenders
-function appendCard(card, img, body, title, desc, btn) {
-    body.appendChild(title);
-    body.appendChild(desc);
-    body.appendChild(btn);
-
+function appendCard(card, img, title) {
     card.appendChild(img);
-    card.appendChild(body);
+    card.appendChild(title);
 }
 //
 
 // Card Creation
-function createCard() {
+function createCard(title, description, link) {
     var card = document.createElement("div");
 
     // Attribute
-    card.setAttribute("class", "card border-palette3 bg-transparent");
-    card.setAttribute("style", "width: 15rem;");
+    card.setAttribute("class", "lesson-card d-flex flex-row m-3");
     //
+
+    // Append
+    card.addEventListener("click", function () {
+        showDetails(title, description, link);
+    });
     
     return card;
 }
 
 function createCardImg() {
+    var div = document.createElement("div");
     var img = document.createElement("img");
 
     // Attribute
-    img.setAttribute("src", "../src/s2.jpg");
-    img.setAttribute("class", "card-img-top");
+    div.setAttribute("class", "lesson-thumbnail");
+
+    img.setAttribute("src", "../mat_icons/lesson.png");
     //
 
-    return img;
-}
+    // Append
+    div.appendChild(img);
 
-function createCardBody() {
-    var div = document.createElement("div");
-
-    // Attribute
-    div.setAttribute("class", "card-body");
-    div.setAttribute("style", "background-color:RGBA(5, 55, 66, 0.8)");
-    //
-    
     return div;
 }
 
 function createCardTitle(title) {
-    var txt = document.createElement("h5");
+    var div = document.createElement("div");
+    var txt = document.createElement("h4");
 
     // Attribute
-    txt.setAttribute("class", "card-title");
+    div.setAttribute("class", "lesson-title");
     txt.innerText = title;
     //
 
-    return txt;
-}
+    // Append
+    div.appendChild(txt);
 
-function createCardDesc(desc) {
-    var txt = document.createElement("p");
-
-    // Attribute
-    txt.setAttribute("class", "card-text");
-    txt.innerText = desc;
-    //
-
-    return txt;
+    return div;
 }
 
 function createCardView(lessonID) {
@@ -147,5 +133,17 @@ function createCardView(lessonID) {
     //
 
     return btn;
+}
+
+function showDetails(title, description, link) {
+    var ttl = document.querySelector("#lesson_title");
+    var desc = document.querySelector("#lesson_desc");
+    var btn = document.querySelector("#lesson_url");
+
+    ttl.innerText = title;
+    desc.innerText = !description ? "No Description Available" : description;
+    btn.href = link;
+    btn.childNodes[1].disabled = false;
+    console.log(btn.childNodes);
 }
 //

@@ -21,21 +21,16 @@ function createSection() {
     }
     //
 
-    // Variables
-    var cont_sections = document.querySelector("#cont_sections");
-    var cont_modals = document.querySelector("#cont_modalsSection");
-    //
-
     request.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             var result = this.response;
             console.log(result);
 
             if (result == "true") {
-                cont_sections.innerHTML = "";
-                cont_modals.innerHTML = "";
                 getSections();
-                loadTeachers("regInTeacherID"); // This is from the manage page in-line script to retrieve all available teachers for section creation.
+                // loadTeachers("regInTeacherID"); // This is from the manage page in-line script to retrieve all available teachers for section creation.
+
+                getAvailableTeachersCreation(schoolID.value, "regInTeacherID"); // schoolID and targetElement
 
                 generateToast("sectionError", "Notification", "Create", "Successfully Created Section");
             } else {

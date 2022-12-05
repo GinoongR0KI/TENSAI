@@ -9,6 +9,8 @@ let questionAnswers = Array();
 let questionTypes = Array();
 
 var currentQuestion = 0;
+
+var isFinished = false;
 console.log("ran");
 //
 
@@ -89,6 +91,9 @@ function displayQuestion() {
     var identAns = document.querySelector("#ident-ans");
     var identSub = document.querySelector("#ident-submit");
 
+    var tofTrue = document.querySelector("#tof-true");
+    var tofFalse = document.querySelector("#tof-false");
+
     cont_questions.innerText = questionPool[currentQuestion];
 
     if (questionTypes[currentQuestion] == "Multiple Choice") {
@@ -100,12 +105,15 @@ function displayQuestion() {
         identAns.style.display = "none";
         identSub.style.display = "none";
 
+        tofTrue.style.display = "none";
+        tofFalse.style.display = "none";
+
         var options = questionOptions[currentQuestion].split("|sepOption|");
         mcOpt1.innerText = options[0];
         mcOpt2.innerText = options[1];
         mcOpt3.innerText = options[2];
         mcOpt4.innerText = options[3];
-    } else {
+    } else if (questionTypes[currentQuestion] == "Identification") {
         mcOpt1.style.display = "none";
         mcOpt2.style.display = "none";
         mcOpt3.style.display = "none";
@@ -113,6 +121,20 @@ function displayQuestion() {
 
         identAns.style.display = "block";
         identSub.style.display = "block";
+
+        tofTrue.style.display = "none";
+        tofFalse.style.display = "none";
+    } else {
+        mcOpt1.style.display = "none";
+        mcOpt2.style.display = "none";
+        mcOpt3.style.display = "none";
+        mcOpt4.style.display = "none";
+
+        identAns.style.display = "none";
+        identSub.style.display = "none";
+
+        tofTrue.style.display = "block";
+        tofFalse.style.display = "block";
     }
     // console.log("test:"+questionPool.length);
 }
@@ -124,13 +146,17 @@ function checkAnswer(targetElement) {
         if (questionAnswers[currentQuestion] == targetElement.innerText) {
             score ++;
         }
-    } else {
+    } else if (questionTypes[currentQuestion] == "Identification") {
         if (questionAnswers[currentQuestion] == targetElement.value) {
             score ++;
         }
 
         var identAns = document.querySelector("#ident-ans");
         identAns.value = "";
+    } else {
+        if (questionAnswers[currentQuestion] == targetElement.innerText) {
+            score++;
+        }
     }
 
     currentQuestion++;
@@ -144,6 +170,8 @@ function checkAnswer(targetElement) {
 }
 
 function finishQuiz() {
+    isFinished = true;
+    
     var cont_score = document.querySelector("#cont_score");
     cont_score.innerText = score;
 

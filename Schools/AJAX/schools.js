@@ -15,10 +15,10 @@ function getSchools() {
 
             // Containers
             var cont_schools = document.querySelector("#cont_schools");
-            var cont_modals = document.querySelector("#cont_modals");
+            // var cont_modals = document.querySelector("#cont_modals");
 
             cont_schools.innerHTML = "";
-            cont_modals.innerHTML = "";
+            // cont_modals.innerHTML = "";
             //
 
             if (results != "") {
@@ -30,7 +30,7 @@ function getSchools() {
                     // IDs
                     var editSchoolID = "inEditSchoolID-"+schools[i]['id'];
                     var editSchoolName = "inEditSchoolName-"+schools[i]['id'];
-                    var editPrincipal = "inEditPrincipal-"+schools[i]['id']
+                    var editPrincipal = "inEditPrincipal";
                     var editMunicipality = "inEditMunicipality-"+schools[i]['id'];
                     //
 
@@ -45,10 +45,11 @@ function getSchools() {
                         // Special Assignments
                     var td_teachers = createData(schools[i]['teachers']); // This needs to be set using another ajax call that returns the number of teachers in the school
                     var td_sections = createData(schools[i]['sections']); // This needs to be set using another ajax call that returns the number of sections in the school
+                    var td_actions = addActions_Schools("#deleteSchool", "#editSchool", schools[i]['id'], schools[i]['schoolName'], schools[i]['principalID'], schools[i]['municipality']);
                         //
 
                         // Append to Row
-                    appendRow(row, td_id, td_name, td_municipality, td_principal, td_teachers, td_sections);
+                    appendRow(row, td_id, td_name, td_municipality, td_principal, td_teachers, td_sections, td_actions);
                         //
 
                         // Append to School Container
@@ -56,39 +57,9 @@ function getSchools() {
                         //
                     //
 
-                    // Create the Modals
-                    var modal = createModal("school-"+schools[i]['id']+"-modal");
-
-                    var modalDialog = createModalDialog();
-                    var modalContent = createModalContent();
-
-                    var modalHeader = createModalHeader("Edit School");
-                    var modalBody = createModalBody();
-
-                    var modalFooter = createModalFooterSchool(schools[i]['id'], schools[i]['id'], editSchoolName, editPrincipal, editMunicipality);
-
-                        // Append Modal
-                    appendModal(modal, modalDialog, modalContent, modalHeader, modalBody, modalFooter);
-                        //
-                    //
-
-                    // Create Editable Values for Modals
-                    var formSchoolID = createFormFloatingInput("School ID", schools[i]['id'], "number", editSchoolID, "schoolID", "xxxxxx", false);
-                    var formSchoolName = createFormFloatingInput("School Name", schools[i]['schoolName'], "text", editSchoolName, "schoolName", "School", false);
-                    // var formPrincipal = createFormFloatingSelect("Assigned Principal", schools[i]['principalID'], "text", editPrincipal, "principalID", "xxxxxxx", false);
-                    var formPrincipal = createFormFloatingSelect("Principal ID", schools[i]['principalID'], editPrincipal, "principalID", "Select Principal", null);
-                    var formMunicipality = createFormFloatingSelect("Municipality", schools[i]['municipality'], editMunicipality, "municipality", "Select Municipality", "Abucay,Bagac,Balanga,Dinalupihan,Hermosa,Limay,Mariveles,Morong,Orani,Orion,Pilar,Samal");
-                        // Append to Modal Body
-                    appendEditables(modalBody, formSchoolID, formSchoolName, formPrincipal, formMunicipality);
-                        //
-                    
-                    //
-
-                    // Append to main container
-                    cont_modals.appendChild(modal);
-
-                    getPrincipalName(schools[i]['principalID'], td_principal);
-                    getAvailablePrincipals(editPrincipal, schools[i]['principalID']);
+                    // console.log(schools[i]['principalID']);
+                    getPrincipalName(schools[i]['principalID'], td_principal); // Change principal id to principal name in table data
+                    getAvailablePrincipals(editPrincipal, schools[i]['principalID']); // This is to set which available principals are there in the edit modal
                     //
 
                 }
@@ -103,13 +74,14 @@ function getSchools() {
 }
 
 // Appending in one line
-function appendRow(row, td_id, td_name, td_municipality, td_principal, td_teachers, td_sections) {
+function appendRow(row, td_id, td_name, td_municipality, td_principal, td_teachers, td_sections, td_actions) {
     row.appendChild(td_id);
     row.appendChild(td_name);
     row.appendChild(td_municipality);
     row.appendChild(td_principal);
     row.appendChild(td_teachers);
     row.appendChild(td_sections);
+    row.appendChild(td_actions);
 }
 
 function appendEditables(modalBody, id, name, principal, municipality) {
@@ -131,3 +103,26 @@ function appendModal(modal, dialog, content, header, body, footer) {
 }
 //
 
+// Modal Functionalities
+
+// Changing Modal Values
+function school_delete(schoolID) {
+    var btn = document.querySelector("#delBtn");
+    btn.setAttribute("onCLick", "deleteSchool("+schoolID+")");
+}
+
+function school_edit(schoolID, schoolName, principal, municipality) {
+    var inOrigID = document.getElementById("inOrigID");
+    var inID = document.getElementById("inEditSchoolID");
+    var inName = document.getElementById("inEditSchoolName");
+    var inPrincipal = document.getElementById("inEditPrincipal");
+    var inMunicipality = document.getElementById("inEditMunicipality");
+
+    inOrigID.value = schoolID;
+    inID.value = schoolID;
+    inName.value = schoolName;
+    inPrincipal.value = principal;
+    inMunicipality.value = municipality;
+
+    getAvailablePrincipals("inEditPrincipal", principal);
+}

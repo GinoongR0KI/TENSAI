@@ -10,7 +10,7 @@ $redir = new redirector();
 //
 
 // Redirecting
-$redir->out("../login.php");
+$redir->out("login.php");
 //
 
 // Process
@@ -22,49 +22,83 @@ $redir->out("../login.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/custom.min.css">
+    <link rel="stylesheet" href="css/rina_style.css">
+    <link rel="stylesheet" href="css/student.min.css">
     <link rel="stylesheet" href="css/student.css">
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TENSAI - Dashboard</title>
+    <title>Welcome to TENSAI</title>
 
-    <script src="RINA/rinaJS.js"></script>
+    <script src="RINA/rinaJS.js" defer></script>
+    <script src="https://kit.fontawesome.com/bbd1bd16d5.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Toast -->
-    <div aria-live="polite" aria-atomic="true" class="d-flex align-items-center">
-        <div class="toast-container position-absolute" id="cont_toasts" style="position:fixed; bottom:1vh; right: 1vh">
-            
+    <!-- <button type="button" class="btn btn-outline-palette2" data-bs-toggle="modal" data-bs-target="#rina_modalConfirmLogout">
+        <i class="bi bi-person-circle p-5 fs-5"></i>
+    </button> -->
+    <div class="container-fluid">
+        <!--
+            <div class="d-flex justify-content-start">
+                <div class="profile-container">
+                    <img src="mat_icons/owl.png">
+                </div>
+            </div>
+        -->
+        <div class="profile-container">
+            <!-- <a href="student_profile.php" disabled><img src="mat_icons/tensai_profile.png"></a> -->
+            <a href="#" data-bs-toggle="modal" data-bs-target="#rina_modalConfirmLogout"><img src="mat_icons/tensai_profile.png"></a>
+            Welcome, <?php echo $_SESSION['fname']; ?>!
         </div>
-    </div>
-
-    <!-- Toast -->
-
-    <!--Background-->
-    <div class="tensai-body" style="background-image: url('src/s1.png');">
-        <div class="color-overlay">
-            <div class="tensai-account d-flex flex-start position-relative">
-                <button type="button" class="btn btn-outline-palette2 position-absolute" data-bs-toggle="modal" data-bs-target="#rina_modalConfirmLogout">
-                    <i class="bi bi-person-circle p-5 fs-5"></i>
-                </button>
+        
+        <div class="row">
+            
+            <div class="col">
+                <div class="d-flex justify-content-center align-content-center">
+                <img class="title-container" src="mat_icons/tensai_lesson.png">
+                    <div class="lesson-button mt-5">
+                        <a href="Lessons/dashboard.php" id="btn_lessons">
+                            <img src="mat_icons/tensai_lesson_btn.png">
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div style="position:fixed; bottom:10px;left:10px;">
-                <p id="rina_speech"></p>
-                <button id='btnTalk' onclick="logger()" onclick="audioCall()">Give Command!</button>
-            </div>
-            <div class="d-flex justify-content-center align-items-center">
-                <div class="tensai-text">
-                    <h1 class="m-5">WELCOME, <?php echo $_SESSION['fname']; ?>!</h1>
-                    <h3 class="m-5">What should we do today?</h3>
-                    <a href="Lessons/lessonDashboard.php" class="btn btn-outline-palette4 btn-lg m-5 custBtn" id="btn_lessons"><img class="imgIcons" src="src/lessonIcon.png" alt="Lessons"><br/>Lessons</a> <!-- Lesson Viewing -->
-                    <a href="Assessments/assessmentDashboard.php" class="btn btn-outline-palette4 btn-lg m-5 custBtn" id="btn_assessments"><img class="imgIcons" src="src/assessIcon.png" alt="Assessments"><br/>Assessments</a> <!-- Assessment Taking -->
+            <div class="col">
+                <div class="d-flex justify-content-center align-content-center">
+                <img class="title-container" src="mat_icons/tensai_quiz.png">
+                    <div class="assessment-button mt-5">
+                        <a href="Assessments/dashboard.php" id="btn_assessments">
+                            <img src="mat_icons/tensai_assess_btn.png">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="d-flex justify-content-end">
+            <div class="rina-container position-absolute bottom-0 end-0 p-4">
+                <!-- Wrapper for Rina UI -->
+                <div id="rina_bubble" class="rina_wrapper">
+                    <div class="head-text">
+                        Talk with RINA!
+                    </div>
+                    <div class="chat-box">
+                        <form action="#">
+                        <div class="field">
+                            <p id="rina_speech">...</p>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <button class="btn" id="rina_click" onClick="toggleBubble()"><img src="mat_icons/rina_base.png"></img></button>
+            </div>
+        </div>
     </div>
+
+    
 
     <!-- Modals -->
     <div class="modal fade" id="rina_modalConfirmLogout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -83,7 +117,8 @@ $redir->out("../login.php");
             </div>
         </div>
     </div>
-    <!--  -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=QFJLgY5F"></script>
 </body>
 </html>

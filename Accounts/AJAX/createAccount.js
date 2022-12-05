@@ -4,29 +4,22 @@ function createAccount() {
 
         // Form Data
     var email = document.querySelector("#regInEmail");
-    var roles = document.querySelector("#regInRoles");
     var schoolID = document.querySelector("#regInSchool");
 
-    if (email.value == null || email.value == "") {
-        generateToast("regError", "Notification", "Create", "Error: Please enter an email");
+    if (!email.value) {
+        generateToast("regError", "Notification", "Create", "Please enter an email");
         return null;
     } else {
         if (!email.checkValidity()) {
-            generateToast("regError", "Notification", "Create", "Error: Please enter a valid email");
+            generateToast("regError", "Notification", "Create", "Please enter a valid email");
             return null;
         }
     }
 
-    if (roles.value == null || roles.value == "null") {
-        generateToast("regError", "Notification", "Create", "Error: Please select a role");
+    if (!schoolID.value || schoolID.value == "null") {
+        generateToast("regError", "Notification", "Create", "Please enter a school ID");
         return null;
     }
-
-    if (schoolID.value == null || schoolID.value == "null") {
-        generateToast("regError", "Notification", "Create", "Error: Please select a school");
-        return null;
-    }
-    console.log(schoolID.value);
         //
         
     //
@@ -49,7 +42,7 @@ function createAccount() {
                 getAccounts();
 
                 if (schoolID != null) {
-                    schoolID.innerHTML = "";
+                    schoolID.innerHTML = ""; // Clears the list
                     getAvailableSchools();
                 }
 
@@ -63,14 +56,18 @@ function createAccount() {
         }
     };
 
+    console.log(!schoolID ? "true" : "false");
     if (schoolID != null && schoolID != undefined) {
         if (schoolID.value != "null" && schoolID.value != null) {
-            request.send("regInEmail="+email.value+"&regInRoles="+roles.value+"&regInSchoolID="+schoolID.value);
+            request.send("regInEmail="+email.value+"&regInSchoolID="+schoolID.value);
+            console.log("Email with School");
         } else {
-            request.send("regInEmail="+email.value+"&regInRoles="+roles.value);    
+            request.send("regInEmail="+email.value);
+            console.log("Email only");
         }
     } else {
-        request.send("regInEmail="+email.value+"&regInRoles="+roles.value);
+        request.send("regInEmail="+email.value);
+        console.log("Email only with school not exist");
     }
     
 }

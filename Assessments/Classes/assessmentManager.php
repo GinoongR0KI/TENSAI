@@ -44,10 +44,11 @@ class assessmentManager {
                     echo "[";
                     while($lessons = $selLQ->fetch_assoc()) { // Get all lessons
                         $lessonID = $lessons['id'];
+                        $lessonName = $lessons['title'];
 
-                        $selAssessments = "SELECT * FROM matAssessments WHERE lessonID = $lessonID";
+                        $selAssessments = "SELECT matAssessments.*, matLessons.title as lessonName FROM matAssessments, matLessons WHERE lessonID = $lessonID AND matAssessments.lessonID = matLessons.id";
                         if ($search != null && $search != "") {
-                            $selAssessments .= " AND id LIKE '$search%' OR title LIKE '$search%'";
+                            $selAssessments .= " AND (matAssessments.id LIKE '$search%' OR matAssessments.title LIKE '%$search%' OR matLessons.title LIKE '%$search%')";
                         }
                         $selAssessments .= ";";
 
@@ -56,9 +57,9 @@ class assessmentManager {
                         if ($selAQ->num_rows > 0) {
                             while($assessments = $selAQ->fetch_assoc()) { // the assessments will return only those from the lessons owned by the teachers
 
-                                $selLessonTitle = "SELECT title AS lessonName FROM matLessons WHERE id = $lessonID;";
-                                $selLTQ = $this->db->query($selLessonTitle);
-                                $lessonTitle = $selLTQ->fetch_assoc();
+                                // $selLessonTitle = "SELECT title AS lessonName FROM matLessons WHERE id = $lessonID;";
+                                // $selLTQ = $this->db->query($selLessonTitle);
+                                // $lessonTitle = $selLTQ->fetch_assoc();
 
                                 $assessID = $assessments['id'];
                                 $selAssessmentCount = "SELECT * FROM matQuestions WHERE assessmentID = $assessID;";
@@ -68,7 +69,8 @@ class assessmentManager {
                                 $question = explode("|sepQuestion|", $questions);
                                 $count = array("numQuestions"=>count($question)-1);
 
-                                $json_string .= json_encode($assessments+$lessonTitle+$count) . ",";
+                                // $json_string .= json_encode($assessments+$lessonTitle+$count) . ",";
+                                $json_string .= json_encode($assessments+$count) . ",";
                             }
 
                         }
@@ -97,10 +99,11 @@ class assessmentManager {
                         if ($selLQ->num_rows > 0) {
                             while($lessons = $selLQ->fetch_assoc()) {
                                 $lessonID = $lessons['id'];
+                                $lessonName = $lessons['title'];
 
-                                $selAssessments = "SELECT * FROM matAssessments WHERE lessonID = $lessonID";
+                                $selAssessments = "SELECT matAssessments.*, matLessons.title as lessonName FROM matAssessments, matLessons WHERE lessonID = $lessonID AND matAssessments.lessonID = matLessons.id";
                                 if ($search != null && $search != "") {
-                                    $selAssessments .= " AND id LIKE '$search%' OR title LIKE '$search%' OR lessonID LIKE '$search%'";
+                                    $selAssessments .= " AND (matAssessments.id LIKE '$search%' OR matAssessments.title LIKE '%$search%' OR matLessons.title LIKE '%$search%' OR lessonID LIKE '$search%')";
                                 }
                                 $selAssessments .= ";";
                                 $selAQ = $this->db->query($selAssessments);
@@ -167,7 +170,7 @@ class assessmentManager {
 
                         $selAssessments = "SELECT * FROM matAssessments WHERE lessonID = $lessonID";
                         if ($search != null && $search != "") {
-                            $selAssessments .= " id LIKE '$search%' OR title LIKE '$search%' OR lessonID LIKE '$search%'";
+                            $selAssessments .= " AND (id LIKE '$search%' OR title LIKE '$search%' OR lessonID LIKE '$search%')";
                         }
                         $selAssessments .= ";";
 
@@ -199,11 +202,11 @@ class assessmentManager {
             break;
         }
 
-        $sel = "SELECT * FROM matAssessments";
-        if ($search != null && $search != "") {
+        // $sel = "SELECT * FROM matAssessments";
+        // if ($search != null && $search != "") {
 
-        }
-        $sel .= ";";
+        // }
+        // $sel .= ";";
     }
 
     function create($title, $lessonID) {

@@ -293,7 +293,7 @@ class reportManager {
         $selStudents = "SELECT uAccounts.id, fname, mname, lname, gfname, gmname, glname, gemail, gcontact, school, section, bday, sex FROM uAccounts, uStudents WHERE uAccounts.id = uStudents.id AND section = $sectionID";
         // Insert code block here for searching function
         if (!empty($search)) {
-            $selStudents .= " AND (uAccounts.id LIKE '$search%' OR fname LIKE '$search%' OR mname LIKE '$search%' OR lname LIKE '$search%' OR email LIKE '$search%')";
+            $selStudents .= " AND (uAccounts.id LIKE '$search%' OR fname LIKE '%$search%' OR mname LIKE '%$search%' OR lname LIKE '%$search%' OR email LIKE '$search%')";
         }
         $selSQ = $this->db->query($selStudents);
 

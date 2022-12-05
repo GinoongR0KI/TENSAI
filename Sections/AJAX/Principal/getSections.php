@@ -12,5 +12,5 @@ $manager = new sectionManager($db);
 //
 
 // Process
-$manager->display($_POST['schoolID'], $_POST['search']);
+$manager->display($_SESSION['schoolID'], $_POST['search']);
 //

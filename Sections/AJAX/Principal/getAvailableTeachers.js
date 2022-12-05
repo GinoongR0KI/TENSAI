@@ -14,16 +14,14 @@ function getAvailableTeachers(schoolID, targetElement, value) {
             var results = this.response;
             console.log(results);
 
-            
-
-            if (results != "" && results != null) {
+            try {
                 var teachers = JSON.parse(results);
 
                 // Reset the Selection
                 targetElement.innerHTML = "";
 
                 if (value != null && value != "null") {
-                    var placeholder = createOption("null", null, true);
+                    var placeholder = createOption(value, null, true);
                     getTeacherNameEdit(value, placeholder); // name
                     targetElement.appendChild(placeholder);
 
@@ -38,9 +36,11 @@ function getAvailableTeachers(schoolID, targetElement, value) {
                 for (i = 0; i < teachers.length; i++) {
                     // We create the options here.
                     console.log(teachers);
-                    var opt = createOption(teachers[i]['id'], teachers[i]['id']+" | "+teachers[i]['fname']+" "+teachers[i]['mname']+" "+teachers[i]['lname']);
+                    var opt = createOption(teachers[i]['id'], teachers[i]['fname']+" "+teachers[i]['mname']+" "+teachers[i]['lname']);
                     targetElement.appendChild(opt);
                 }
+            } catch (e) {
+                generateToast("errorAvailTeacher", "Notification", "Error", "Can't get Available Teachers");
             }
         }
     };
@@ -53,6 +53,7 @@ function getAvailableTeachersCreation(schoolID, targetElement) {
 
     // Variables
     // var schoolID = document.querySelector("#"+schoolID);
+    document.querySelector("#regInSchoolID").value = schoolID;
     var targetElement = document.querySelector("#"+targetElement);
     //
 
@@ -63,14 +64,13 @@ function getAvailableTeachersCreation(schoolID, targetElement) {
         if (this.readyState === 4 && this.status === 200) {
             var results = this.response;
             console.log(results);
-
             
-
             if (results != "" && results != null) {
                 // Reset the Selection
                 targetElement.innerHTML = "";
 
                 var placeholder = createOption("null", "Select Teacher", true);
+                placeholder.selected = true;
                 targetElement.appendChild(placeholder);
                 //
 
@@ -133,7 +133,7 @@ function getTeacherNameEdit(id, targetElement) {
             console.log(result);
 
             if (result != "") {
-                targetElement.innerText = id + " | " + result;
+                targetElement.innerText = result;
             } else {
                 targetElement.innerText = "Not Set";
             }

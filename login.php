@@ -53,11 +53,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TENSAI - Login</title>
+    <title>TENSAI | Login</title>
 
-    <script src="javascript/toaster.js"></script> <!-- used for making Toasts -->
+    <script src="javascript/toaster.js"></script>
 </head>
-<body>
+<body style="background-image: url('src/s1.png');">
     <!-- Toast -->
     <div aria-live="polite" aria-atomic="true" class="d-flex align-items-center">
         <div class="toast-container position-absolute" id="cont_toasts" style="position:fixed; bottom:1vh; right: 1vh">
@@ -76,21 +76,21 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <form action="" method="POST">
+                <form method="POST">
                     <input class="form-control mb-3" name="email" type="text" placeholder="Email" aria-label="email"/>
                     <input class="form-control mb-3" name="password" type="password" placeholder="Password" aria-label="password"/>
-                    <button name="submitLogin" type="submit" class="btn btn-outline-palette2">GO TO TENSAI</a>
+                    <button name="submitLogin" type="submit" class="btn btn-outline-palette2">LOGIN</a>
                 </form>
             </div>
         </div>
     </div>
 
     <!--Animated Background-->
-    <div class="tensai-head" style="background-image: url('Files/Images/Backgrounds/s1.png');">
+    <div class="tensai-head">
         <div class="color-overlay d-flex justify-content-center align-items-center">
             <div class="tensai-text">
                 <h1>WELCOME TO TENSAI</h1>
-                <!-- <h3>Technology-assisted Education via Networked-learning with Speech and Auditory Interplay</h3> -->
+                <h3>Technology-assisted Education via Networked-learning with Speech and Auditory Interplay</h3>
                 <a href="#" class="btn btn-outline-palette4 btn-lg" data-bs-toggle="offcanvas" data-bs-target="#LogIn">GO TO TENSAI</a>
             </div>
         </div>

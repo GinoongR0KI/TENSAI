@@ -29,7 +29,7 @@ class sectionManager {
         $sel = "SELECT * FROM etcSections WHERE schoolID = $schoolID"; 
 
         if ($search != null && $search != "") {
-            $sel .= " AND id LIKE '$search%' OR sectionName LIKE '$search%' OR schoolID LIKE '$search%' OR advisorID LIKE '$search%'";
+            $sel .= " AND (id LIKE '$search%' OR sectionName LIKE '$search%' OR schoolID LIKE '$search%' OR advisorID LIKE '$search%')";
         }
 
         $sel .= ";";
@@ -115,21 +115,38 @@ class sectionManager {
         $advisorID = mysqli_real_escape_string($this->db, $advisorID);
         //
 
-        // Variables
-        if ($advisorID != "null") {
-            $ins = "INSERT INTO etcSections (sectionName, schoolID, advisorID) VALUES ('$sectionName', $schoolID, $advisorID);";
-        } else {
-            $ins = "INSERT INTO etcSections (sectionName, schoolID, advisorID) VALUES ('$sectionName', $schoolID, null);";
+        if (!$this->sectionExists($sectionName, $schoolID)) {
+            // Variables
+            if ($advisorID != "null") {
+                $ins = "INSERT INTO etcSections (sectionName, schoolID, advisorID) VALUES ('$sectionName', $schoolID, $advisorID);";
+            } else {
+                $ins = "INSERT INTO etcSections (sectionName, schoolID, advisorID) VALUES ('$sectionName', $schoolID, null);";
+            }
+            //
+
+            // Process
+            if ($this->db->query($ins)) {
+                return true;
+            }
         }
+        return false;
+        //
+    }
+
+    function sectionExists($sectionName, $schoolID) {
+        // Clean SQL
+        $sectionName = mysqli_real_escape_string($this->db, $sectionName);
+        $schoolID = mysqli_real_escape_string($this->db, $schoolID);
         //
 
-        // Process
-        if ($this->db->query($ins)) {
+        $selSections = "SELECT * FROM etcSections WHERE sectionName = '$sectionName' AND schoolID = $schoolID;";
+        $selSQ = $this->db->query($selSections);
+
+        if ($selSQ->num_rows > 0) {
             return true;
         }
 
         return false;
-        //
     }
 
     function edit($sectionID, $sectionName, $advisorID) {

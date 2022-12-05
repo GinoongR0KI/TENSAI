@@ -10,84 +10,57 @@ function getSections() {
 
     request.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            var results = this.responseText;
+            var results = this.response;
             console.log(results);
 
             // Containers
             var cont_sections = document.querySelector("#cont_sections");
-            var cont_modals = document.querySelector("#cont_modalsSection");
 
                 // Reset
             cont_sections.innerHTML = "";
-            cont_modals.innerHTML = "";
                 //
             //
 
-            if (results != null && results != "") {
+            try {
                 var sections = JSON.parse(results);
                 console.log(sections);
 
                 for (i = sections.length - 1; i >= 0; i--) {
                     // IDs
-                    editSchoolID = "inEditSchoolID-"+sections[i]['id'];
+                    editSchoolID = "inEditSchoolID";
                     editSectionName = "inEditSectionName-"+sections[i]['id'];
                     editAdvisorID = "inEditAdvisorID-"+sections[i]['id'];
                     //
 
                     // Create Rows
-                    var row = createRow("#section-"+sections[i]['id']+"-modal");
+                    var row = createRow();
 
                     var td_id = createData(sections[i]['id']);
                     var td_name = createData(sections[i]['sectionName']);
-                    // var td_schoolID = createData(sections[i]['schoolID']);
                     var td_students = createData(null); // put a script here to read how many students are assigned to the current section
                     var td_advisorID = createData(sections[i]['advisorID']);
+                    var td_actions = addActions_Sections("#deleteSectionModal", "#editSectionModal", sections[i]['id'], sections[i]['schoolID'], sections[i]['sectionName'], sections[i]['advisorID']);
 
                         // Append
                     // appendRow(row, td_id, td_name, td_schoolID, td_students, td_advisorID);
-                    appendRowSections(row, td_id, td_name, td_students, td_advisorID);
+                    appendRowSections(row, td_id, td_name, td_students, td_advisorID, td_actions);
                         //
 
-                    //
-
-                    // Create Modals
-                    var modal = createModal("section-"+sections[i]['id']+"-modal");
-
-                    var modalDialog = createModalDialog();
-                    var modalContent = createModalContent();
-
-                    var modalHeader = createModalHeader("Edit Section");
-                    var modalBody = createModalBody();
-                    
-                    var modalFooter = createModalFooterSection(sections[i]['id'], sections[i]['schoolID'], editSectionName, editAdvisorID);
-
-                        // Append
-                    appendModalSections(modal, modalDialog, modalContent, modalHeader, modalBody, modalFooter);
-                        //
-
-                    //
-
-                    // Create Editable Inputs for Modals
-                    var formEditSchoolID = createFormFloatingInput("School ID", sections[i]['schoolID'], "text", editSchoolID, "schoolID", "xxxxxx", true);
-                    var formEditSectionName = createFormFloatingInput("Section Name", sections[i]['sectionName'], "text", editSectionName, "sectionName", "Section Name");
-                    var formEditAdvisorID = createFormFloatingSelect("Advisor", "null", editAdvisorID, "advisorID", "Select Teacher", "null");
-
-                        // Append
-                    appendEditablesSections(modalBody, formEditSchoolID, formEditSectionName, formEditAdvisorID);
-                        //
                     //
 
                     // Append
                     cont_sections.appendChild(row);
-                    cont_modals.appendChild(modal);
+                    // cont_modals.appendChild(modal);
                     //
 
                     getStudentCount(sections[i]['id'], td_students);
                     getTeacherName(sections[i]['advisorID'], td_advisorID);
-                    getAvailableTeachers(editSchoolID, editAdvisorID, sections[i]['advisorID']); // nasa for loop
                 }
+            } catch (e) {
+                var txt = document.createTextNode("No Results Found");
 
-            } else {
+                cont_sections.appendChild(txt);
+
                 generateToast("searchError", "Notifications", "Search", "Error: No Results Found");
             }
 
@@ -98,12 +71,13 @@ function getSections() {
 }
 
 // Append Stuff
-function appendRowSections(row, id, name, students, advisor) {
+function appendRowSections(row, id, name, students, advisor, actions) {
     row.appendChild(id);
     row.appendChild(name);
     // row.appendChild(school);
     row.appendChild(students);
     row.appendChild(advisor);
+    row.appendChild(actions);
 }
 
 function appendEditablesSections(modalBody, schoolID, sectionName, advisorID) {
@@ -122,6 +96,37 @@ function appendModalSections(modal, dialog, content, header, body, footer) {
     modal.appendChild(dialog);
 }
 //
+
+// Change Modal Values
+function sections_edit(sectionID, schoolID, sectionName, advisorID) {
+    var inID = document.getElementById("inEditSectionID");
+    var inSchoolID = document.getElementById("inEditSchoolID");
+    var inName = document.getElementById("inEditSectionName");
+    var inAdvisor = document.getElementById("inEditAdvisorID");
+
+    var editBtn = document.getElementById("editBtn");
+
+    inID.value = sectionID;
+    inSchoolID.value = schoolID;
+    inName.value = sectionName;
+    inAdvisor.value = advisorID;
+
+    editBtn.setAttribute("onClick", "editSection("+schoolID+","+sectionID+",'inEditSectionName','inEditAdvisorID')");
+
+    getAvailableTeachers("inEditSchoolID", "inEditAdvisorID", advisorID); // nasa for loop
+    console.log(advisorID);
+}
+
+function sections_delete(sectionID, schoolID, sectionName) {
+    var inID = document.getElementById("inEditSectionID");
+    var txtName = document.getElementById("delSectionTxt");
+
+    var delBtn = document.getElementById("delBtn");
+
+    txtName.innerText = sectionName;
+
+    delBtn.setAttribute("onClick", "deleteSection("+schoolID+", "+sectionID+")");
+}
 
 // Data
 function getStudentCount(sectionID, targetElement) {

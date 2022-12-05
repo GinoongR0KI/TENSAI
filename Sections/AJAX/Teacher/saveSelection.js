@@ -42,6 +42,7 @@ function saveSelectionStudents() {
         var el = e;
         strings += el.value + "," + el.checked + ".|.";
     });
+    console.log(strings);
 
     //
 

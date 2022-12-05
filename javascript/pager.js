@@ -6,7 +6,7 @@ function loadGenInfo() {
 
     var request = new XMLHttpRequest();
 
-    request.open("POST", "AJAX/getLessonGeneralInfo.php");
+    request.open("POST", "AJAX/Admin/getLessonGeneralInfo.php");
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     request.onreadystatechange = function () {
@@ -57,7 +57,7 @@ function loadPages() {
 
     var request = new XMLHttpRequest();
 
-    request.open("POST", "AJAX/getPages.php");
+    request.open("POST", "AJAX/Admin/getPages.php");
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     request.onreadystatechange = function () {
@@ -179,7 +179,7 @@ function createSlideButton(targetPage, pageID) {
 
     // Attributes
 
-    btn.setAttribute("class", "nav-link slideBtn");
+    btn.setAttribute("class", "nav-link slideBtn btn");
     btn.setAttribute("id", "page"+pageID+"-tab");
     btn.setAttribute("data-bs-toggle", "tab");
     btn.setAttribute("data-bs-target", "#"+targetPage);

@@ -30,7 +30,10 @@ function loadLesson() {
                 // Display Lesson Title
                 var sepTitle = lessonData[0]['title'].split("|sepData|");
                 var title = sepTitle[0];
+                var sepDesc = lessonData[0]['description'].split("|sepData|");
+                var desc = sepDesc[0];
                 document.querySelector("#txt_lessonTitle").innerText = title;
+                document.querySelector("#txt_lessonDesc").innerText = !desc ? "No Description Available." : desc;
                 //
 
                 // Slides

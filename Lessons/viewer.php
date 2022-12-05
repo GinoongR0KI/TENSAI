@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../css/custom.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/rina_style.css">
+    <link rel="stylesheet" href="../css/student.min.css">
     <link rel="stylesheet" href="../css/student.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TENSAI - Lesson Viewer</title>
+    <title>TENSAI | Lesson Name</title>
+    <script>
+        const myModal = document.getElementById('myModal')
+        const myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.bs.modal', () => {
+        myInput.focus()
+        })
+    </script>
 
     <script src="AJAX/Students/lesson.js"></script>
-    <script src="../RINA/rinaJS.js"></script>
 
-    <script src="../javascript/toaster.js"></script>
+    <script src="../RINA/rinaJS.js" defer></script>
+
+    <script src="https://kit.fontawesome.com/bbd1bd16d5.js" crossorigin="anonymous"></script>
 </head>
-<body style="background-image: url('../src/s1.jpg'); background-attachment: fixed; background-repeat: no-repeat; background-position: center; background-size: cover;">
+<body>
     <!-- Toast -->
     <div aria-live="polite" aria-atomic="true" class="d-flex align-items-center">
         <div class="toast-container position-absolute" id="cont_toasts" style="position:fixed; bottom:1vh; right: 1vh">
@@ -25,64 +34,74 @@
 
     <!-- Toast -->
 
-    <!--Background-->
-    <div class="tensai-body">
-        <div class="color-overlay">
-            <div class="tensai-head d-flex">
-                <a class="btn d-flex align-items-center" data-bs-toggle="offcanvas" href="#slideMenu" role="button" aria-controls="slideMenu" style="color:white;"> <!-- Slides -->
-                    <i class="bi bi-menu-button-wide-fill fs-3"></i>
-                </a>
-                <div class="mb-2 p-3 justify-content-start align-items-start">
-                    
-                    <h1 id="txt_lessonTitle">LESSON NAME</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="back">
+                    <a href="#" id="btn_back" onClick="history.go(-1)"><img src="../mat_icons/tensai_back_btn.png"></a> <!-- Back Button -->
                 </div>
+                <div>
+                    <a class="btn d-flex align-items-center" data-bs-toggle="offcanvas" href="#slideMenu" role="button" aria-controls="slideMenu"> <!-- Slides -->
+                        <i class="bi bi-menu-button-wide-fill fs-3"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="lesson-info float-end">
+                    <button data-bs-toggle="modal" data-bs-target="#lessonInfo" id="btn_info">Lesson Info</button>
+                </div>
+            </div>
+        </div>
 
-                <div class="mb-2 p-4 ms-auto">
-                    <a href="#" class="form-control" id="btn_back" onClick="history.go(-1)"><i class="bi bi-arrow-return-left"></i> GO BACK</a>
+        <div class="slide-container position-relative">
+            <div class="slide-button-left float-start position-absolute top-50 start-0">
+                <button id="prevBTN" onclick="nextPrev(-1)"><img src="../mat_icons/tensai_left_btn.png"></button>
+            </div>
+            
+            <div class="lesson-container d-flex justify-content-center align-content-center">
+                <div class="lesson-output" id="cont_slides">
+                <!--Class name should be /slide/-->
+                <!--Test Slides-->
+                <div class="slide">
+                    Test Slide 1
+                </div>
+                <div class="slide">
+                    Test Slide 2
+                </div>
+                <div class="slide">
+                    Test Slide 3
+                </div>
+                <div class="slide">
+                    Test Slide 4
+                </div>
+                <div class="slide">
+                    Test Slide 5
+                </div>
                 </div>
             </div>
 
-                            <!--Lesson Viewer-->
-                <div class="container-fluid">
-                    <div style="position:fixed; bottom:10px;left:10px;z-index: 10">
-                        <p id="rina_speech"></p>
-                        <button id='btnTalk' onclick="logger()" onclick="audioCall()">Give Command!</button>
+            <div class="slide-button-right float-end position-absolute top-50 end-0">
+                <button id="nextBTN" onclick="nextPrev(1)"><img src="../mat_icons/tensai_right_btn.png"></button>
+            </div>
+        </div>
+
+        <!-- RINA -->
+        <div class="d-flex justify-content-end">
+            <div class="rina-container position-absolute bottom-0 end-0 p-4">
+                <!-- Wrapper for Rina UI -->
+                <div id="rina_bubble" class="rina_wrapper">
+                    <div class="head-text">
+                        Talk with RINA!
                     </div>
-                <div class="row row-cols-5 row-cols-md-2 mt-3 ms-5">
-                    <div class="col d-flex align-content-center">
-                        <div class="d-flex justify-content-center align-items-center ms-5 position-relative">
-                            <div class="lesson-container d-flex justify-content-center align-items-center" style="border: 5px solid #fff; min-height: 70vh; min-width: 80vw; background-color: rgb(162, 219, 250, 0.5)">
-                                <div class="lesson-output" id="cont_slides">
-                                    <!--Return output from Lesson Creator-->
-                                    <!--Slides-->
-
-                                    <!--Test Slides-->
-                                    <div class="slide" style="display:none;">
-                                        Test 1
-                                    </div>
-                                    <div class="slide" style="display:none;">
-                                        Test 2
-                                    </div>
-                                    <div class="slide" style="display:none;">
-                                        Test 3
-                                    </div>
-                                    <div class="slide" style="display:none;">
-                                        Test 4
-                                    </div>
-                                    <div class="slide" style="display:none;">
-                                        Test 5
-                                    </div>
-                                    <!--Test Slides-->
-
-                                </div>
-                            </div>
-                <!--BUTTONS-->
-                <button type="button" class="btn btn-palette4 position-absolute start-0" id="prevBTN" onclick="nextPrev(-1)"><i class="bi bi-arrow-bar-left"></i>PREVIOUS</button>
-                <button type="button" class="btn btn-palette4 position-absolute end-0" id="nextBTN" onclick="nextPrev(1)">NEXT<i class="bi bi-arrow-bar-right"></i></button>
+                    <div class="chat-box">
+                        <form action="#">
+                        <div class="field">
+                            <p id="rina_speech">...</p>
                         </div>
-                        </div>
- 
+                        </form>
+                    </div>
                 </div>
+                <button class="btn" id="rina_click" onClick="toggleBubble()"><img src="../mat_icons/rina_base.png"></img></button>
             </div>
         </div>
     </div>
@@ -116,27 +135,23 @@
         </div>
     </div>
 
-    <!-- modals -->
-
-        <!-- Logout Confirmation -->
-    <div class="modal fade" id="rina_modalConfirmLogout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+    <!--Lesson Info Modal-->
+    <div class="modal fade" id="lessonInfo" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Confirm Action</h5>
+                    <h1 class="modal-title fs-5" id="txt_lessonTitle">Lesson Name</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    Are you sure to logout?
+                <div class="modal-body" id="txt_lessonDesc">
+                    Lesson information here....
                 </div>
                 <div class="modal-footer">
-                    <a href="../functions/login/logout.php" id="btn_logout"><button type="button" class="btn btn-palette2" data-bs-dismiss="modal">LOGOUT</button></a>
+                    <button type="button" class="btn btn-secondary" id="btn_infoClose" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
-    <!--  -->
-
     <script>
         var currentSlide = 0;
         showSlide(currentSlide);
@@ -192,11 +207,9 @@
                 }
             }
         }
-     
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script>
+
         loadLesson();
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=QFJLgY5F"></script>
 </body>
-</html>

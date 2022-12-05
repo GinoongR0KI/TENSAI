@@ -8,74 +8,6 @@ class accountManager {
         $this->db = $db;
     }
 
-    // function displayAccounts($search) { // This function is to be used for an AJAX call; also a dynamic script capable of using a search filter.
-
-    //     // Clean SQL Injection
-    //     $search = mysqli_real_escape_string($this->db, $search);
-    //     //
-
-    //     // Admins = SELECT * and will only filter if it's been used
-    //     // As for Principals and Teachers, they will have to be limited by their school
-    //     // To get the school, the Principal must provide the school ID he is assigned to which is a select query on the etcSchools table to find his id.
-    //     // The Teachers can be found through the uTeachers table provided that there is a schoolID.
-
-    //     $sel = "SELECT * FROM uAccounts";
-
-    //     $uID = $_SESSION['id'];
-    //     $sel .= " WHERE uType != 'Admin' AND id != $uID";
-    //     if ($search != null && $search != "") {
-    //         $sel .= " AND id LIKE '$search%' OR fname LIKE '$search%' OR mname LIKE '$search%' OR lname LIKE '$search%' OR email LIKE '$search%'";
-    //     }
-
-    //     if ($_SESSION['uType'] != "Admin") {
-    //         $schoolID = $_SESSION['schoolID'];
-    //         $selStudents = "SELECT * FROM uStudents WHERE school = $schoolID;";
-    //         $selSQ = $this->db->query($selStudents);
-
-    //         if ($selSQ->num_rows > 0) {
-    //             while ($students = $selSQ->fetch_assoc()) {
-    //                 $studentID = $students['id'];
-    //                 $sel .= " OR id = $studentID";
-    //             }
-    //         }
-
-    //         $selTeachers = "SELECT * FROM uTeachers WHERE school = $schoolID;";
-    //         $selTQ = $this->db->query($selTeachers);
-
-    //         if ($selTQ->num_rows > 0) {
-    //             while($teachers = $selTQ->fetch_assoc()) {
-    //                 $teacherID = $teachers['id'];
-    //                 $sel .= " OR id = $teacherID";
-    //             }
-    //         }
-    //         // switch ($_SESSION['uType']) {
-    //         //     case "Principal":
-                    
-    //         //     break;
-    //         //     case "Teacher":
-    //         //     break;
-    //         // }
-    //     }
-
-    //     $sel .= " ORDER BY uType DESC";
-    //     $sel .= ";";
-
-    //     $dbquery = $this->db->query($sel);
-
-    //     if ($dbquery->num_rows > 0) {
-
-    //         $json_string = ""; // Instantiate the JSON string
-
-    //         echo "["; // beginning of the JSON data
-
-    //         while ($results = $dbquery->fetch_assoc()) {
-    //             $json_string .= json_encode($results) . ","; // Encode the results into JSON format.
-    //         }
-    //         echo rtrim($json_string, ","); // remove the last , mark and return the JSON data.
-    //         echo "]"; // Close the JSON data off.
-    //     }
-    // }
-
     function displayAccounts($search) {
         $role = $_SESSION['uType'];
         switch ($role) {
@@ -129,30 +61,93 @@ class accountManager {
         $uID = $_SESSION['id'];
         $schoolID = $_SESSION['schoolID'];
 
-        $selAccounts = "SELECT uAccounts.id as id, fname, mname, lname, email, uType, dateCreated, isActivated FROM uAccounts, uTeachers WHERE uAccounts.id = uTeachers.id AND school = $schoolID";
+        // Get accounts from same school including teachers and students account
+        $selTeachers = "SELECT uAccounts.id as id, fname, mname, lname, email, uType, dateCreated, isActivated FROM uAccounts, uTeachers WHERE uAccounts.id = uTeachers.id AND school = $schoolID";
+        $selStudents = "SELECT uAccounts.id as id, fname, mname, lname, email, uType, dateCreated, isActivated FROM uAccounts, uStudents WHERE uAccounts.id = uStudents.id AND school = $schoolID";
 
             // Searching
         if ($search != null || $search != "") {
-            $selAccounts .= " AND (uAccounts.id LIKE '$search%' OR fname LIKE '$search%' OR mname LIKE '$search%' OR lname LIKE '$search%' OR email LIKE '$search%')";
+            $selTeachers .= " AND (uAccounts.id LIKE '$search%' OR fname LIKE '%$search%' OR mname LIKE '%$search%' OR lname LIKE '%$search%' OR email LIKE '$search%')";
+            $selStudents .= " AND (uAccounts.id LIKE '$search%' OR fname LIKE '%$search%' OR mname LIKE '%$search%' OR lname LIKE '%$search%' OR email LIKE '$search%')";
         }
-        $selAccounts .= ";";
             //
 
-        $selAQ = $this->db->query($selAccounts);
-        
-        if ($selAQ->num_rows > 0) {
-            $json_string = "";
+        $selTQ = $this->db->query($selTeachers);
+        $selSQ = $this->db->query($selStudents);
 
-            echo "[";
-            while ($accounts = $selAQ->fetch_assoc()) {
-                $json_string .= json_encode($accounts) . ",";
+        $json_string = "";
 
+        echo "[";
+        if ($selTQ->num_rows > 0) {
+            while ($teachers = $selTQ->fetch_assoc()) {
+                $json_string .= json_encode($teachers) . ",";
             }
-            echo rtrim($json_string, ",");
-            echo "]";
+        }
+        if ($selSQ->num_rows > 0) {
+            while ($students = $selSQ->fetch_assoc()) {
+                $json_string .= json_encode($students) . ",";
+            }
+        }
+        echo rtrim($json_string, ",");
+        echo "]";
+
+        //
+    }
+
+    // TERMINATION
+    function terminate($accID) {
+        // Clean SQL Injection
+        $accID = mysqli_real_escape_string($this->db, $accID);
+        //
+
+        // Variables
+        $selAccount = "SELECT * FROM uAccounts WHERE id = $accID";
+        $selAQ = $this->db->query($selAccount);
+
+        $id = null;
+        $uType = null;
+        $email = null;
+
+        $terminate = "UPDATE uAccounts SET isActivated = 0 WHERE id = $accID";
+        //
+
+        // Process
+        if ($selAQ->num_rows > 0) {
+            $account = $selAQ->fetch_assoc(); // Get details from here
+            $id = $account['id'];
+            $uType = $account['uType'];
+            $email = $account['email'];
+        }
+
+        if ($this->db->query($terminate)) {
+            if ($uType != null || $uType != "") {
+                switch($uType) {
+                    case "Principal":
+                        $unassign = "UPDATE etcSchools SET principalID = NULL WHERE principalID = $id;";
+                    break;
+                    case "Teacher":
+                        $del = "DELETE FROM uTeachers WHERE id = $id;";
+                    break;
+                    case "Student":
+                        $del = "DELETE FROM uStudents WHERE id = $id;";
+                    break;
+                }
+
+                if (isset($del)) {$this->db->query($del);}
+                if (isset($unassign)) {$this->db->query($unassign);}
+            }
+
+            $delCode = "DELETE FROM etcCodes WHERE email = '$email';";
+            $this->db->query($delCode); // delete codes from this email
+
+            return true;
+        } else {
+            return false;
         }
         //
     }
+
+    // GETTER
 
     function getAccountDetails($email) {
         // Clean SQL Injection
@@ -162,7 +157,6 @@ class accountManager {
         // Variables
         $sel = "SELECT id, uType FROM uAccounts WHERE email = '$email';";
         $selQ = $this->db->query($sel);
-
         //
 
         // Process
@@ -302,18 +296,18 @@ class accountManager {
         //
     }
 
-    function delete($email) {
+    function delete($accID) {
         // Clean SQL Injection
-        $email = mysqli_real_escape_string($this->db, $email);
+        $accID = mysqli_real_escape_string($this->db, $accID);
         //
 
         // variables
-        $sel = "SELECT * FROM uAccounts WHERE email = '$email';";
+        $sel = "SELECT * FROM uAccounts WHERE id = $accID;";
 
         $id = null;
         $utype = null;
 
-        $delete = "DELETE FROM uAccounts WHERE email = '$email';";
+        $delete = "DELETE FROM uAccounts WHERE id = $accID;";
         //
 
         // Process

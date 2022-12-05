@@ -35,7 +35,7 @@ class studentManager {
 
                 $selGenInfo = "SELECT * FROM uAccounts WHERE id = $studentID AND isActivated = 1";
                 if ($search != null && $search != "") {
-                    $selGenInfo .= " AND id LIKE '$search%' OR email LIKE '$search%' OR fname LIKE '$search%' OR mname LIKE '$search%' OR lname LIKE '$search%'";
+                    $selGenInfo .= " AND (id LIKE '$search%' OR email LIKE '$search%' OR fname LIKE '$search%' OR mname LIKE '$search%' OR lname LIKE '$search%')";
                 }
                 $selGenInfo .= ";";
 
