@@ -114,9 +114,11 @@ img.addEventListener('click', async ()=>{
         // Video
 vid.addEventListener('click', ()=>{
     // document.execCommand("insertHTML", false, document.querySelector("#ctrlInVid").value);
-    var link = "https://www.youtube.com/watch?v=WgTms03-syU";
+    var link = document.getElementById("ctrlInVid").value;
     link = link.split("watch?v=");
-    document.execCommand("insertHTML", false, '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+link[1]+'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+    if (link[1].replace(/\s/g,'').length > 0) {
+        document.execCommand("insertHTML", false, '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+link[1]+'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+    }
 });
         //
     //
