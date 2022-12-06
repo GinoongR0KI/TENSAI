@@ -13,7 +13,7 @@
 
     <script src="AJAX/Students/quizer.js"></script>
     <script src="../Reports/AJAX/addReport.js"></script>
-    <script src="../RINA/rinaJS.js" defer></script>
+    <script src="../RINA/rinaJS.js"></script>
 
     <script src="../javascript/toaster.js"></script>
 
@@ -92,19 +92,23 @@
         <div class="d-flex justify-content-end">
             <div class="rina-container position-absolute bottom-0 end-0 p-4">
                 <!-- Wrapper for Rina UI -->
-                <div id="rina_bubble" class="rina_wrapper">
+                <div id="rina_bubble" class="rina_wrapper" style="display:none;">
                     <div class="head-text">
                         Talk with RINA!
                     </div>
                     <div class="chat-box">
                         <form action="#">
                         <div class="field">
+                            <p id="rina_reply"></p>
+                        </div>
+                        <hr>
+                        <div>
                             <p id="rina_speech">...</p>
                         </div>
                         </form>
                     </div>
                 </div>
-                <button class="btn" id="rina_click" onClick="toggleBubble()"><img src="../mat_icons/rina_base.png"></img></button>
+                <button class="btn" id="rina_click" onClick="manualToggleBubble()"><img src="../mat_icons/rina_base.png"></img></button>
             </div>
         </div>
     </div>
@@ -164,6 +168,7 @@
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=QFJLgY5F"></script>
     <script>
         loadQuestions();
+        callRINA();
 
         history.pushState(null, document.title, location.href);
         window.addEventListener("popstate", function() {

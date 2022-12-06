@@ -20,7 +20,7 @@
 
     <script src="AJAX/Students/lesson.js"></script>
 
-    <script src="../RINA/rinaJS.js" defer></script>
+    <script src="../RINA/rinaJS.js"></script>
 
     <script src="https://kit.fontawesome.com/bbd1bd16d5.js" crossorigin="anonymous"></script>
 </head>
@@ -89,19 +89,23 @@
         <div class="d-flex justify-content-end">
             <div class="rina-container position-absolute bottom-0 end-0 p-4">
                 <!-- Wrapper for Rina UI -->
-                <div id="rina_bubble" class="rina_wrapper">
+                <div id="rina_bubble" class="rina_wrapper" style="display:none;">
                     <div class="head-text">
                         Talk with RINA!
                     </div>
                     <div class="chat-box">
                         <form action="#">
                         <div class="field">
+                            <p id="rina_reply"></p>
+                        </div>
+                        <hr>
+                        <div>
                             <p id="rina_speech">...</p>
                         </div>
                         </form>
                     </div>
                 </div>
-                <button class="btn" id="rina_click" onClick="toggleBubble()"><img src="../mat_icons/rina_base.png"></img></button>
+                <button class="btn" id="rina_click" onClick="manualToggleBubble()"><img src="../mat_icons/rina_base.png"></img></button>
             </div>
         </div>
     </div>
@@ -195,7 +199,8 @@
                     currentSlide = currentSlide + n;
                     showSlide(currentSlide);
                 } else {
-                    speechBubble.innerText = "You are in the first page";
+                    rinaReply.innerText = "Sorry, you are already in the first page";
+                    textToSpeech(rinaReply.innerText);
                 }
             } else if (n > 0) {
                 if (currentSlide + n < slide.length) {
@@ -203,12 +208,15 @@
                     currentSlide = currentSlide + n;
                     showSlide(currentSlide);
                 } else {
-                    speechBubble.innerText = "You are in the last page";
+                    rinaReply.innerText = "Sorry, you are already in the last page";
+                    textToSpeech(rinaReply.innerText);
+                    // speechBubble.innerText = "You are in the last page";
                 }
             }
         }
 
         loadLesson();
+        callRINA();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=QFJLgY5F"></script>
