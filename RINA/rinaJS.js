@@ -200,7 +200,7 @@ function callRINA() {
                 }
                     // Select Lesson
                 if (text.toLowerCase().includes("view")) {
-                    if (window.location.href == "http://localhost/tensaifrontend/Lessons/dashboard.php") {
+                    if (window.location.href == "https://tensaiedu.online/Lessons/dashboard.php") {
                         var lesson = text.split("view ")[1];
                         console.log(lesson);
                         try {
@@ -233,7 +233,7 @@ function callRINA() {
                 }
 
                 if (text.toLowerCase().includes("go to lesson")) {
-                    if (window.location.href == "http://localhost/tensaifrontend/Lessons/dashboard.php") {
+                    if (window.location.href == "https://tensaiedu.online/Lessons/dashboard.php") {
                         try {
                             var btn = document.getElementById("lesson_url");
                             if (!btn.childNodes[1].disabled) {
@@ -259,7 +259,7 @@ function callRINA() {
 
                 // Lesson Viewing
                 if (text.toLowerCase().includes("turn page next")) {
-                    if (window.location.href.includes("http://localhost/tensaifrontend/Lessons/viewer.php")) {
+                    if (window.location.href.includes("https://tensaiedu.online/Lessons/viewer.php")) {
                         try {
                             rinaReply.innerText = "Turning to the next page";
                             textToSpeech(rinaReply.innerText);
@@ -279,7 +279,7 @@ function callRINA() {
                 }
 
                 if (text.toLowerCase().includes("turn page back")) {
-                    if (window.location.href.includes("http://localhost/tensaifrontend/Lessons/viewer.php")) {
+                    if (window.location.href.includes("https://tensaiedu.online/Lessons/viewer.php")) {
                         try {
                             rinaReply.innerText = "Turning to the previous page";
                             textToSpeech(rinaReply.innerText);
@@ -299,7 +299,7 @@ function callRINA() {
                 }
 
                 if (text.toLowerCase().includes("view lesson details")) {
-                    if (window.location.href.includes("http://localhost/tensaifrontend/Lessons/viewer.php")) {
+                    if (window.location.href.includes("https://tensaiedu.online/Lessons/viewer.php")) {
                         try {
                             rinaReply.innerText = "Opening lesson details";
                             textToSpeech(rinaReply.innerText);
@@ -318,7 +318,7 @@ function callRINA() {
                 }
 
                 if (text.toLowerCase().includes("close lesson details")) {
-                    if (window.location.href.includes("http://localhost/tensaifrontend/Lessons/viewer.php")) {
+                    if (window.location.href.includes("https://tensaiedu.online/Lessons/viewer.php")) {
                         try {
                             rinaReply.innerText = "Closing lesson details";
                             textToSpeech(rinaReply.innerText);
@@ -338,7 +338,7 @@ function callRINA() {
 
                 // Students Assessments Dashboard
                 if (text.toLowerCase().includes("take")) {
-                    if (window.location.href == "http://localhost/tensaifrontend/Assessments/dashboard.php") {
+                    if (window.location.href == "https://tensaiedu.online/Assessments/dashboard.php") {
                         var assessment = text.split("take ")[1];
                         try {
                             var assessments = document.querySelectorAll(".assessment-card");
@@ -413,7 +413,7 @@ function callRINA() {
 
                 // Taking Assessment
                 if (text.toLowerCase().includes("my answer is")) {
-                    if (window.location.href.includes("http://localhost/tensaifrontend/Assessments/quiz.php")) {
+                    if (window.location.href.includes("https://tensaiedu.online/Assessments/quiz.php")) {
                         var answer = text.split("my answer is ")[1];
 
                         try {
