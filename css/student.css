@@ -3,6 +3,10 @@ body{
     -webkit-font-smoothing: antialiased;
 }
 
+.profile-container {
+    color:white;
+}
+
 .profile-container img{
     width: 8rem;
 }
@@ -231,6 +235,17 @@ input:checked + .slider {
 }
 
 /*assessment page*/
+.assessment {
+    border-radius: .5rem;
+    /* filter: drop-shadow(0 0 5rem rgb(252, 200, 248)); */
+    background-color:#50386c;
+    box-shadow:0 8px 20px 0px rgba(0,0,0,0.125);
+    padding:1vw;
+    color:white;
+    position:relative;
+    top:16vh;
+}
+
 .assessment-list{
     overflow-x: auto;
     display: flex;
@@ -337,6 +352,10 @@ input:checked + .slider {
     width: 1000px;
     height: 550px;
     border: 5px solid white;
+}
+
+.slide {
+    color:white;
 }
 
 .lesson-info button{

@@ -47,41 +47,43 @@
             <div class="assessment-container" id="assessment">
                 <!--SAMPLE-->
                 <div class="assessment">
-                    <div class="assessment-header">
-                        <h2 id="cont_question">QUESTION 1</h2>
+                    <div class="assessment-header d-flex flex-row justify-content-center">
+                        <h2 id="cont_question">LOADING QUESTIONS...</h2>
                     </div>
 
+                    <div class="assessment-answers">
                         <!--Multiple Choice Template-->
-                    <div class="choices-container d-flex flex-row justify-content-center">
-                        <div class="choice m-5">
-                            <button class="btn btn-outline-palette1 p-5" id="mc-opt1" onClick="checkAnswer('#mc-opt1')">OPTION 1</button>
+                        <div class="choices-container d-flex flex-row justify-content-center">
+                            <div class="choice m-5">
+                                <button class="btn btn-outline-secondary p-5" id="mc-opt1" onClick="checkAnswer('#mc-opt1')" style="display:none;">OPTION 1</button>
+                            </div>
+                            <div class="choice m-5">
+                                <button class="btn btn-outline-secondary p-5" id="mc-opt2" onClick="checkAnswer('#mc-opt2')" style="display:none;">OPTION 2</button>
+                            </div>
+                            <div class="choice m-5">
+                                <button class="btn btn-outline-secondary p-5" id="mc-opt3" onClick="checkAnswer('#mc-opt3')" style="display:none;">OPTION 3</button>
+                            </div>
+                            <div class="choice m-5">
+                                <button class="btn btn-outline-secondary p-5" id="mc-opt4" onClick="checkAnswer('#mc-opt4')" style="display:none;">OPTION 4</button>
+                            </div>
                         </div>
-                        <div class="choice m-5">
-                            <button class="btn btn-outline-palette3 p-5" id="mc-opt2" onClick="checkAnswer('#mc-opt2')">OPTION 2</button>
-                        </div>
-                        <div class="choice m-5">
-                            <button class="btn btn-outline-palette3 p-5" id="mc-opt3" onClick="checkAnswer('#mc-opt3')">OPTION 3</button>
-                        </div>
-                        <div class="choice m-5">
-                            <button class="btn btn-outline-palette3 p-5" id="mc-opt4" onClick="checkAnswer('#mc-opt4')">OPTION 4</button>
-                        </div>
-                    </div>
 
-                    <!--Fill in the Blanks Template-->
-                    <div class="fillblank-container d-flex justify-content-center">
-                        <input type="text" class="fill-blank p-3" id="ident-ans" placeholder="Answer">
-                    </div>
-                    <div class="submit-btn d-flex position-relative">
-                        <button type="button" class="btn btn-outline-secondary position-absolute end-0 p-3 me-5" id="ident-submit" onClick="checkAnswer('#ident-ans')">SUBMIT</button>
-                    </div>
-
-                    <!-- True or false -->
-                    <div class="tof-container d-flex justify-content-center">
-                        <div class="choice m-5">
-                            <button class="btn btn-outline-secondary p-5" id="tof-true" onClick="checkAnswer('#tof-true')">TRUE</button>
+                        <!--Fill in the Blanks Template-->
+                        <div class="fillblank-container d-flex justify-content-center">
+                            <input type="text" class="fill-blank p-3" id="ident-ans" placeholder="Answer" style="display:none;">
                         </div>
-                        <div class="choice m-5">
-                            <button class="btn btn-outline-secondary p-5" id="tof-false" onClick="checkAnswer('#tof-false')">FALSE</button>
+                        <div class="submit-btn d-flex position-relative end-0 p-3 me-5">
+                            <button type="button" class="btn btn-outline-secondary position-absolute end-0 p-3 me-5" id="ident-submit" onClick="checkAnswer('#ident-ans')" style="display:none;">SUBMIT</button>
+                        </div>
+
+                        <!-- True or false -->
+                        <div class="tof-container d-flex flex-row justify-content-center">
+                            <div class="choice m-5">
+                                <button class="btn btn-outline-secondary p-5" id="tof-true" onClick="checkAnswer('#tof-true')" style="display:none;">TRUE</button>
+                            </div>
+                            <div class="choice m-5">
+                                <button class="btn btn-outline-secondary p-5" id="tof-false" onClick="checkAnswer('#tof-false')" style="display:none;">FALSE</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -168,7 +170,7 @@
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=QFJLgY5F"></script>
     <script>
         loadQuestions();
-        callRINA();
+        // callRINA();
 
         history.pushState(null, document.title, location.href);
         window.addEventListener("popstate", function() {
