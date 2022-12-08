@@ -53,50 +53,18 @@ $redir->out("../login.php");
 
     <div class="container-fluid">
         <div class="assessment-list d-flex flex-row" id="cont_assessments">
-            <div class="assessment-card m-3">
-                <div class="assess-thumbnail d-flex justify-content-center">
-                    <img src="../mat_icons/assess.png">
-                </div>
-                <div class="assess-body">
-                    <div class="assess-title"><h4>Assessment Title</h4></div>
-                    <div class="assess-date"><h6>Assess due date</h6></div>
-                    <div class="assess-score"><h6>0/X</h6></div>
-                </div>
-                <div class="assess-footer d-flex flex-row">
-                    <div class="assess-button">
-                        <button>TAKE ASSESSMENT</button>
-                    </div>
-                </div>
-            </div>
 
             <div class="assessment-card m-3">
                 <div class="assess-thumbnail d-flex justify-content-center">
                     <img src="../mat_icons/assess.png">
                 </div>
                 <div class="assess-body">
-                    <div class="assess-title"><h4>Assessment Title</h4></div>
-                    <div class="assess-date"><h6>Assess due date</h6></div>
-                    <div class="assess-score"><h6>0/X</h6></div>
+                    <div class="assess-title"><h4>-----</h4></div>
+                    <div class="assess-date"><h6>-----</h6></div>
                 </div>
                 <div class="assess-footer d-flex flex-row">
                     <div class="assess-button">
-                        <button>TAKE ASSESSMENT</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="assessment-card m-3">
-                <div class="assess-thumbnail d-flex justify-content-center">
-                    <img src="../mat_icons/assess.png">
-                </div>
-                <div class="assess-body">
-                    <div class="assess-title"><h4>Assessment Title</h4></div>
-                    <div class="assess-date"><h6>Assess due date</h6></div>
-                    <div class="assess-score"><h6>0/X</h6></div>
-                </div>
-                <div class="assess-footer d-flex flex-row">
-                    <div class="assess-button">
-                        <a href="#"><button href="#">TAKE ASSESSMENT</button></a>
+                        <button>-----</button>
                     </div>
                 </div>
             </div>

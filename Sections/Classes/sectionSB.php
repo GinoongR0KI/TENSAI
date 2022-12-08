@@ -61,16 +61,11 @@ class sectionSB {
                 <tbody id="cont_sections">
                     <!--Sample Data-->
                     <tr>
-                        <td>69</td>
-                        <td>Rainbow</td>
-                        <td>13</td>
-                        <td>Kaoruko Mifune</td>
-                        <td>
-                            <div class="hover-button">
-                                <button type="button" class="btn btn-sm btn-button" data-bs-toggle="modal" data-bs-target="#editAccount"><i class="bi bi-pencil-square"></i></button>
-                                <button type="button" class="btn btn-sm btn-button" data-bs-toggle="modal" data-bs-target="#deleteAccount"><i class="bi bi-trash3"></i></button>
-                            </div>
-                        </td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
                     </tr>
                 </tbody>
             </table>
@@ -114,11 +109,11 @@ class sectionSB {
                     <tbody id="cont_students">
                         <!--Added section will appear here-->
                         <!-- tr will be added here from queries -->
-                        <td>1</td>
-                        <td>Darry</td>
-                        <td>Argon</td>
-                        <td>Rose</td>
-                        <td><input type="checkbox" value="1"></td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
                     </tbody>
 
                 </table>
@@ -165,62 +160,6 @@ class sectionSB {
                 </table>
             </div>
         ';
-        // echo "
-        //     <div class=\"tab-pane fade\" id=\"lessonTab\" role=\"tabpanel\" aria-labelledby=\"lesson-tab\" tabindex=\"0\">
-        //         <div class=\"row mt-4 mb-4\">
-        //             <!--Search-->
-        //             <div class=\"col\">
-        //                 <div class=\"col input-group mb-3\">
-        //                     <input type=\"text\" class=\"form-control\" id=\"searchTextLesson\" placeholder=\"Search\" aria-label=\"Search\" aria-describedby=\"search\">
-        //                     <button class=\"btn btn-outline-palette4 btn-palette2\" type=\"button\" id=\"search\" onClick=\"getLessons(".$_SESSION['id'].")\"><i class=\"bi bi-search\"></i></button>
-        //                 </div>
-        //             </div>
-
-        //             <!--Viewing Lessons-->
-        //             <!--<div class=\"col-2\"> <!-- Button for toggling a modal for viewing selected Lessons
-        //                 <button type=\"button\" class=\"btn btn-outline-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#modalSelLessons\">
-        //                     Selected Lessons
-        //                 </button>
-        //             </div>-->
-
-        //             <!--Saving Lessons-->
-        //             <div class=\"col-2\"> <!-- Button for toggling a modal for viewing selected Lessons -->
-        //                 <button type=\"button\" class=\"btn btn-outline-primary\" id=\"saveSelLessons\" onClick=\"saveSelectionLesson(); toggleBtn('saveSelLessons', true)\" disabled>
-        //                     Save Selection
-        //                 </button>
-        //             </div>
-
-
-        //         </div>
-
-        //             <table class=\"table table-hover mt-4\">
-        //                 <thead>
-        //                     <tr>
-        //                         <th scope=\"col\">#</th>
-        //                         <th scope=\"col\">Lesson Name</th>
-        //                         <th scope=\"col\">Description</th>
-        //                         <th scope=\"col\">Material Owner</th>
-        //                         <th scope=\"col\">Selection</th>
-        //                     </tr>
-        //                 </thead>
-
-        //                 <tbody id=\"cont_lessons\">
-        //                     <!--Added lesson will appear here-->
-        //                     <!-- This is where tr will be added from results -->
-                            
-        //                 </tbody>
-
-        //             </table>
-
-        //         </div>
-
-        //     </div>
-        // ";
-
-        // This is the Assessment Tab
-        // echo "
-
-        // ";
     }
         //
 

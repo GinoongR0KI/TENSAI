@@ -124,54 +124,6 @@ $redir->unAuth("Student", "../");
                         </div>
 
                         <div class="account-button position-absolute end-0 d-flex flex-row">
-                            <!--Sort-->
-                            <!-- <div class="col-auto me-4">
-                                <div class="dropdown">
-                                    <button class="btn btn-button dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Sort
-                                    </button>
-                                    <ul class="dropdown-menu p-2">
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    School
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Principal
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Teacher
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Student
-                                                </label>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-                                </div>
-                            </div> -->
 
                             <div class="col pe-3">
                                 <!--Add Assessment-->
@@ -203,20 +155,15 @@ $redir->unAuth("Student", "../");
                             <tbody id="cont_assessments">
                                 <!--Sample Data-->
                                 <tr>
-                                    <td>Lesson Sample</td>
-                                    <td>Insert description here...</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Rainbow</td>
-                                    <td>
-                                        <div class="hover-button">
-                                            <button type="button" class="btn btn-sm btn-button" data-bs-toggle="modal"
-                                                data-bs-target="#editSchool"><i
-                                                    class="bi bi-pencil-square"></i></button>
-                                            <button type="button" class="btn btn-sm btn-button" data-bs-toggle="modal"
-                                                data-bs-target="#deleteAssessment"><i class="bi bi-trash3"></i></button>
-                                        </div>
-                                    </td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
                                 </tr>
 
                             </tbody>

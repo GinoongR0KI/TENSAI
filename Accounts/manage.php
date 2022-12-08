@@ -130,65 +130,14 @@
                         <!--Search-->
                         <div class="col-5">
                             <div class="input-group mb-3 d-flex">
-                                <input type="text" class="form-control" id="searchText" placeholder="Search . . ."
-                                    aria-label="Search . . ." aria-describedby="searchBTN">
+                                <input type="text" class="form-control" id="searchText" placeholder="Search . . ." aria-label="Search . . ." aria-describedby="searchBTN">
                                 <button class="btn btn-button" type="button" id="searchBTN" onClick="getAccounts()">Search</button>
                             </div>
                         </div>
                         <div class="account-button position-absolute end-0 d-flex flex-row">
-                            <!--Sort--><!-- <div class="col-auto me-4">
-
-                                
-                                <div class="dropdown">
-                                    <button class="btn btn-button dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Sort
-                                    </button>
-                                    <ul class="dropdown-menu p-2">
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    School
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Principal
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Teacher
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckChecked" checked>
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Student
-                                                </label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div> -->
                             <div class="col pe-3">
                                 <!--Add Account-->
-                                <button type="button" class="btn btn-outline-button" data-bs-toggle="modal"
-                                    data-bs-target="#addAccount">Add Account
-                                </button>
+                                <button type="button" class="btn btn-outline-button" data-bs-toggle="modal" data-bs-target="#addAccount">Add Account</button>
                             </div>
                         </div>
                     </div>
@@ -210,37 +159,15 @@
                             <tbody id="cont_accounts">
                                 <!--Sample Data-->
                                 <tr>
-                                    <td>1</td>
-                                    <td>First</td>
-                                    <td>Middle</td>
-                                    <td>Last</td>
-                                    <td>sample@email.com</td>
-                                    <td>type</td>
-                                    <td>22 August 2022</td>
-                                    <td>Active</td>
-                                    <td>
-                                        <div class="hover-button">
-                                            <button type="button" class="btn btn-sm btn-button" data-bs-toggle="modal"
-                                                data-bs-target="#editAccount"><i
-                                                    class="bi bi-pencil-square"></i></button>
-                                            <button type="button" class="btn btn-sm btn-button" data-bs-toggle="modal"
-                                                data-bs-target="#deleteAccount"><i class="bi bi-trash3"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>First</td>
-                                    <td>Middle</td>
-                                    <td>Last</td>
-                                    <td>sample@email.com</td>
-                                    <td>type</td>
-                                    <td>22 August 2022</td>
-                                    <td>Active</td>
-                                    <td>
-                                        <div class="hover-button">N/A</div>
-                                        
-                                    </td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
                                 </tr>
                                 
                             </tbody>

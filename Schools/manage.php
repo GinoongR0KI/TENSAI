@@ -101,6 +101,9 @@ $redir->exclusive("Admin","../dashboard.php");
                         <li class="nav-item m-2">
                             <a class="nav-link" href="../Reports/manage.php">Generate Report</a>
                         </li>
+                        <li class="nav-item m-2">
+                            <a class="nav-link" href="../functions/login/logout.php">Logout</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -115,7 +118,7 @@ $redir->exclusive("Admin","../dashboard.php");
 
                 <div class="row mb-4 mt-4 me-5">
                     <div class="account-table d-flex flex-row position-relative shadow-sm p-3 mb-3 bg-body rounded">
-                    <!--Search-->
+                        <!--Search-->
                         <div class="col-5">
                             <div class="input-group mb-3 d-flex">
                                 <input type="text" class="form-control" id="searchText" placeholder="Search . . ." aria-label="Search . . ." aria-describedby="searchBTN">
@@ -123,49 +126,6 @@ $redir->exclusive("Admin","../dashboard.php");
                             </div>
                         </div>
                         <div class="account-button position-absolute end-0 d-flex flex-row">
-                            <!--Sort-->
-                            <!-- <div class="col-auto me-4">
-                            
-                                <div class="dropdown">
-                                    <button class="btn btn-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Sort
-                                    </button>
-                                    <ul class="dropdown-menu p-2">
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                    School
-                                                    </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                    Principal
-                                                    </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                    Teacher
-                                                    </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                                    <label class="form-check-label" for="flexCheckChecked">
-                                                    Student
-                                                    </label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div> -->
                             <div class="col pe-3">
                                 <!--Add Account-->
                                 <button type ="button" class="btn btn-outline-button" data-bs-toggle="modal" data-bs-target="#addSchool">Add School</button>
@@ -188,18 +148,13 @@ $redir->exclusive("Admin","../dashboard.php");
                             <tbody id="cont_schools">
                                 <!--Sample Data-->
                                 <tr>
-                                    <td>Nijigasaki</td>
-                                    <td>123456</td>
-                                    <td>Odaiba</td>
-                                    <td>Mrs. Zhong</td>
-                                    <td>3</td>
-                                    <td>3</td>
-                                    <td>
-                                        <div class="hover-button">
-                                            <button type="button" class="btn btn-sm btn-button" data-bs-toggle="modal" data-bs-target="#editSchool"><i class="bi bi-pencil-square"></i></button>
-                                            <button type="button" class="btn btn-sm btn-button" data-bs-toggle="modal" data-bs-target="#deleteSchool"><i class="bi bi-trash3"></i></button>
-                                        </div>
-                                    </td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
                                 </tr>
                                 
                             </tbody>

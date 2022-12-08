@@ -152,18 +152,13 @@ $redir->unAuth("Student", "../");
                             <tbody id="cont_lessons">
                                 <!--Sample Data-->
                                 <tr>
-                                    <td>69</td>
-                                    <td>Lesson Sample</td>
-                                    <td>Insert description here...</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Rainbow</td>
-                                    <td>
-                                        <div class="hover-button">
-                                            <button type="button" class="btn btn-sm btn-button" data-bs-toggle="modal" data-bs-target="#editSchool"><i class="bi bi-eye"></i></button>
-                                            <button type="button" class="btn btn-sm btn-button" data-bs-toggle="modal" data-bs-target="#deleteSchool"></button>
-                                        </div>
-                                    </td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
                                 </tr>
                                 
                             </tbody>

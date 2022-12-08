@@ -125,16 +125,11 @@ $redir->unAuth("Student", "../");
                             <tbody id="cont_students">
                                 <!--Sample Data-->
                                 <tr>
-                                    <td>1</td>
-                                    <td>Takasaki</td>
-                                    <td>Yuu</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <div class="hover-button">
-                                            <button type="button" class="btn btn-sm btn-button"><a href="individual_report.php"><i class="bi bi-eye"></i></a></button>
-                                        </div>
-                                    </td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
+                                    <td>-----</td>
                                 </tr>
                                 
                             </tbody>

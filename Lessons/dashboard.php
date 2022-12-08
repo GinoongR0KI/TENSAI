@@ -42,16 +42,7 @@
                             <img src="../mat_icons/lesson.png">
                         </div>
                         <div class="lesson-title">
-                            <h4>Lesson Title</h4>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card d-flex flex-row m-3">
-                        <div class="lesson-thumbnail">
-                            <img src="../mat_icons/lesson.png">
-                        </div>
-                        <div class="lesson-title">
-                            <h4>Lesson Title</h4>
+                            <h4>-----</h4>
                         </div>
                     </div>
                 </div>
