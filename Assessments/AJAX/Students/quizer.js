@@ -147,7 +147,7 @@ function checkAnswer(targetElement) {
             score ++;
         }
     } else if (questionTypes[currentQuestion] == "Identification") {
-        if (questionAnswers[currentQuestion] == targetElement.value) {
+        if (questionAnswers[currentQuestion].toLowerCase() == targetElement.value.toLowerCase()) {
             score ++;
         }
 

@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col">
                 <div class="back">
-                    <a href="dashboard.php">
+                    <a id="btn_back" href="dashboard.php">
                         <img src="../mat_icons/tensai_back_btn.png"></a>
                 </div>
             </div>
@@ -170,7 +170,7 @@
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=QFJLgY5F"></script>
     <script>
         loadQuestions();
-        // callRINA();
+        callRINA();
 
         history.pushState(null, document.title, location.href);
         window.addEventListener("popstate", function() {
