@@ -21,8 +21,8 @@ class sectionSB {
 
     function navTabTeacher() {
         echo "
-            <button class=\"nav-link active\" id=\"nav-student\" data-bs-toggle=\"tab\" data-bs-target=\"#studentTab\" type=\"button\" role=\"tab\" aria-controls=\"student\" aria-selected=\"false\">Student</button>
-            <button class=\"nav-link\" id=\"nav-lesson\" data-bs-toggle=\"tab\" data-bs-target=\"#lessonTab\" type=\"button\" role=\"tab\" aria-controls=\"lesson\" aria-selected=\"false\">Lesson Materials</button>
+            <button class=\"nav-link nav-teachers active\" id=\"nav-student\" data-bs-toggle=\"tab\" data-bs-target=\"#studentTab\" type=\"button\" role=\"tab\" aria-controls=\"student\" aria-selected=\"false\">Student</button>
+            <button class=\"nav-link nav-teachers\" id=\"nav-lesson\" data-bs-toggle=\"tab\" data-bs-target=\"#lessonTab\" type=\"button\" role=\"tab\" aria-controls=\"lesson\" aria-selected=\"false\">Lesson Materials</button>
             <!--<button class=\"nav-link\" id=\"nav-assessment\" data-bs-toggle=\"tab\" data-bs-target=\"#assessTab\" type=\"button\" role=\"tab\" aria-controls=\"assess\" aria-selected=\"false\">Assessment Materials</button>-->
         ";
     }
