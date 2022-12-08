@@ -21,11 +21,11 @@ $redir->unAuth("Student", "../");
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/style.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,9 +34,8 @@ $redir->unAuth("Student", "../");
     <script src="AJAX/reports.js"></script>
 
     <script src="../javascript/toaster.js"></script>
-    <script src="../javascript/carder.js"></script>
+    <script src="../javascript/rower.js"></script>
 </head>
-
 <body>
     <!-- Toast -->
     <div aria-live="polite" aria-atomic="true" class="d-flex align-items-center">
@@ -45,7 +44,6 @@ $redir->unAuth("Student", "../");
         </div>
     </div>
 
-    <!-- Toast -->
     <div class="container-fluid">
         <div class="row flex-nowrap">
             <!--Navigation-->
@@ -77,7 +75,6 @@ $redir->unAuth("Student", "../");
                                 ';
                             }
                         ?>
-                        
                         <li class="nav-item m-2">
                             <a class="nav-link" href="../Lessons/manage.php">Lessons Management</a>
                         </li>
@@ -98,7 +95,7 @@ $redir->unAuth("Student", "../");
             <div class="col mt-5">
                 <div class="row">
                     <div class="col mb-2">
-                        <h3>Reports Management</h3>
+                        <h3>Reports</h3>
                     </div>
                 </div>
 
@@ -113,9 +110,35 @@ $redir->unAuth("Student", "../");
                         </div>
                     </div>
 
-                    <div class="table-container shadow-sm p-3 mb-5 bg-body rounded"> <!-- This is going to be the container of the report management page -->
+                    <div class="table-container shadow-sm p-3 mb-5 bg-body rounded">
                         <h4>Students:</h4>
-                        <div id="cont_students"></div>
+                        <table class="table table-hover table-responsive-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Student ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Middle Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col gap-3">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cont_students">
+                                <!--Sample Data-->
+                                <tr>
+                                    <td>1</td>
+                                    <td>Takasaki</td>
+                                    <td>Yuu</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <div class="hover-button">
+                                            <button type="button" class="btn btn-sm btn-button"><a href="individual_report.php"><i class="bi bi-eye"></i></a></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
 
                         <!--Hidden-->
                         <input type="hidden" id="hiddenUserID" value="<?php echo $_SESSION['id']; ?>"> <!-- Used for some script -->
@@ -131,7 +154,5 @@ $redir->unAuth("Student", "../");
         // Get all students
         getStudents();
     </script>
-
 </body>
-
 </html>

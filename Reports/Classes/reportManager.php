@@ -239,7 +239,7 @@ class reportManager {
         $selStudents = "SELECT uAccounts.id, fname, mname, lname, gfname, gmname, glname, gemail, gcontact, school, section, bday, sex FROM uAccounts, uStudents WHERE uAccounts.id = uStudents.id";
         // Insert code block here for searching function
         if (!empty($search)) {
-            $selStudents .= " AND (uAccounts.id LIKE '$search%' OR fname LIKE '$search%' OR mname LIKE '$search%' OR lname LIKE '$search%' OR email LIKE '$search%')";
+            $selStudents .= " AND (uAccounts.id LIKE '$search%' OR fname LIKE '%$search%' OR mname LIKE '%$search%' OR lname LIKE '%$search%' OR email LIKE '$search%')";
         }
         $selSQ = $this->db->query($selStudents);
 
@@ -266,7 +266,7 @@ class reportManager {
         $selStudents = "SELECT uAccounts.id, fname, mname, lname, gfname, gmname, glname, gemail, gcontact, school, section, bday, sex FROM uAccounts, uStudents WHERE uAccounts.id = uStudents.id AND school = $schoolID";
         // Insert code block here for searching function
         if (!empty($search)) {
-            $selStudents .= " AND (uAccounts.id LIKE '$search%' OR fname LIKE '$search%' OR mname LIKE '$search%' OR lname LIKE '$search%' OR email LIKE '$search%')";
+            $selStudents .= " AND (uAccounts.id LIKE '$search%' OR fname LIKE '%$search%' OR mname LIKE '%$search%' OR lname LIKE '%$search%' OR email LIKE '$search%')";
         }
         $selSQ = $this->db->query($selStudents);
 
@@ -423,6 +423,8 @@ class reportManager {
                 }
             }
 
+            $highest *= 100;
+
             if ($highest == 0) {
                 return ["N/A", "N/A", "N/A"];
             }
@@ -453,6 +455,8 @@ class reportManager {
                     $lessonTitle = explode("|sepData|", $records['titleLesson'])[0];
                 }
             }
+
+            $lowest *= 100;
 
             return [$lowest, $assessTitle, $lessonTitle];
         } else {

@@ -278,18 +278,34 @@ function getStudents() { // This also needs sectionID
             try {
                 var students = JSON.parse(result);
 
-                for (i = 0; i < students.length; i++) {
-                    if (i%5 == 0) {
-                        var cardGroup = createCardGroup();
-                    }
-
-                    if (i >= students.length) {i = 0;}
-
-                    var card = createCard("students-"+students[i]['id'], "../mat_icons/tensai_profile.png", students[i]['fname'] + " " + students[i]['mname'] + " " + students[i]['lname'], "", "studentReport.php?userID="+students[i]['id'], "Get Reports", true);
+                for (i=0; i < students.length; i++) {
                     
-                    cardGroup.appendChild(card);
-                    cont_students.appendChild(cardGroup);
+                    var row = createRow();
+
+                    var td_id = createData(students[i]['id']);
+                    var td_fname = createData(students[i]['fname']);
+                    var td_mname = createData(students[i]['mname']);
+                    var td_lname = createData(students[i]['lname']);
+                    var td_actions = addActions_Reports(students[i]['id']);
+
+                    // Append
+                    appendRow(row, td_id, td_fname, td_mname, td_lname, td_actions);
+
+                    cont_students.appendChild(row);
                 }
+
+                // for (i = 0; i < students.length; i++) {
+                //     if (i%5 == 0) {
+                //         var cardGroup = createCardGroup();
+                //     }
+
+                //     if (i >= students.length) {i = 0;}
+
+                //     var card = createCard("students-"+students[i]['id'], "../mat_icons/tensai_profile.png", students[i]['fname'] + " " + students[i]['mname'] + " " + students[i]['lname'], "", "studentReport.php?userID="+students[i]['id'], "Get Reports", true);
+                    
+                //     cardGroup.appendChild(card);
+                //     cont_students.appendChild(cardGroup);
+                // }
             } catch (e) {
                 var txt = document.createTextNode("No Results Found");
 
@@ -304,7 +320,7 @@ function getStudents() { // This also needs sectionID
 // -- Teacher Commands
 
 // Download Report
-function downloadReport() { // This uses the jsPDF & html2Canvas library to work (should be imported in the web page that uses this script)
+function downloadReport(studName) { // This uses the jsPDF & html2Canvas library to work (should be imported in the web page that uses this script)
     window.html2canvas = html2canvas;
     window.jsPDF = window.jspdf.jsPDF;
 
@@ -319,7 +335,7 @@ function downloadReport() { // This uses the jsPDF & html2Canvas library to work
     // document.write();
 
     elementHTML.innerHTML = clean;
-    console.log("innerHTML'd");
+    // console.log("innerHTML'd");
     // return null;
 
     var pagewidth = doc.internal.pageSize.getWidth() / 1.1;
@@ -335,7 +351,7 @@ function downloadReport() { // This uses the jsPDF & html2Canvas library to work
     doc.html(clean, {
         callback:function(doc) {
             var date = new Date().toLocaleDateString();
-            doc.save('report-'+date);
+            doc.save('report-'+studName+date);
         },
         orientation: 'l',
         x: 0,
@@ -350,11 +366,19 @@ function downloadReport() { // This uses the jsPDF & html2Canvas library to work
 // -- Download Report
 
 // Appenders
-function appendRow(row, id, student, assessment, score, dateTaken) {
+function appendRow_obs(row, id, student, assessment, score, dateTaken) {
     row.appendChild(id);
     row.appendChild(student);
     row.appendChild(assessment);
     row.appendChild(score);
     row.appendChild(dateTaken);
+}
+
+function appendRow(row, id, fname, mname, lname, actions) {
+    row.appendChild(id);
+    row.appendChild(fname);
+    row.appendChild(mname);
+    row.appendChild(lname);
+    row.appendChild(actions);
 }
 //

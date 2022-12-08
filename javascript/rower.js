@@ -231,6 +231,34 @@ function addActions_Assessments(assessID, assessTitle, targetModalDel) {
     return td;
 }
 
+function addActions_Reports(studID) {
+    var td = document.createElement("td");
+
+    var div = document.createElement("div");
+    var btn = document.createElement("button");
+
+    // Attribute
+    div.setAttribute("class", "hover-button");
+
+    btn.setAttribute("class", "btn btn-sm btn-button");
+    btn.innerHTML = '<a href="student.php?userID='+studID+'"><i class="bi bi-eye"></i></a>';
+    btn.addEventListener("click", function () {
+        this.firstChild.click();
+    });
+    btn.firstChild.setAttribute("target", "_blank");
+
+    //
+
+    // Append
+    div.appendChild(btn);
+
+    td.appendChild(div);
+    //
+
+    // Return
+    return td;
+}
+
 function addSelection(className, value, isChecked, targetBtn) {
     var td = document.createElement("td");
 
