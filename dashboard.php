@@ -63,7 +63,7 @@
                             <a class="nav-link" href="Lessons/manage.php">Lessons Management</a>
                         </li>
                         <li class="nav-item m-2">
-                            <a class="nav-link" href="Assessmenets/manage.php">Assessment Management</a>
+                            <a class="nav-link" href="Assessments/manage.php">Assessment Management</a>
                         </li>
                         <li class="nav-item m-2">
                             <a class="nav-link" href="Reports/manage.php">Generate Report</a>
