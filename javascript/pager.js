@@ -205,6 +205,14 @@ function createNewPage(pageID) {
     div.setAttribute("role","tabpanel");
     div.setAttribute("contenteditable","true");
     div.setAttribute("style","border: 0.1rem #053742 solid; min-height: 50vh;");
+
+    div.addEventListener("paste", function(e) {
+        e.preventDefault();
+
+        var txt = (e.originalEvent || e).clipboardData.getData('text/plain');
+
+        document.execCommand("insertHTML", false, txt);
+    });
     //
 
     return div;
