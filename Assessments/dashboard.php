@@ -76,24 +76,27 @@ $redir->out("../login.php");
         <div class="d-flex justify-content-end">
             <div class="rina-container position-absolute bottom-0 end-0 p-4">
                 <!-- Wrapper for Rina UI -->
-                <div id="rina_bubble" class="rina_wrapper" style="display:none;">
+                <div id="rina_bubble" class="rina_wrapper" style="display:none; right:16px; bottom:25vh">
                     <div class="head-text">
                         Talk with RINA!
                     </div>
                     <div class="chat-box">
                         <form action="#">
-                        <div class="field">
-                            <p id="rina_reply"></p>
-                        </div>
-                        <hr>
-                        <div>
-                            <p id="rina_speech">...</p>
-                        </div>
+                            <div class="field">
+                                <p id="rina_reply"></p>
+                            </div>
                         </form>
                     </div>
+                    
+                    <div class="chat-box">
+                        <b>User Captions:</b> <p id="rina_speech">...</p>
+                    </div>
+                    <br>
                 </div>
-                <button class="btn" id="rina_click" onClick="manualToggleBubble()"><img src="../mat_icons/rina_base.png"></img></button>
+                
+                <button class="btn position-absolute bottom-0 end-0 p-4" id="rina_click" onClick="manualToggleBubble()"><img src="mat_icons/rina_base.png"></img></button>
             </div>
+            
         </div>
 
     </div>

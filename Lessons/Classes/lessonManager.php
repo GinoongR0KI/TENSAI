@@ -137,8 +137,11 @@ class lessonManager {
         $delLesson = "DELETE FROM matLessons WHERE id = $lessonID;"; // deletes from the lessons table
         if ($this->db->query($delLesson)) {
             $delPages = "DELETE FROM matPages WHERE lessonID = $lessonID;"; // deletes all pages related to that lesson
+            $unassign = "DELETE FROM assignLessons WHERE lessonID = $lessonID";
             if ($this->db->query($delPages)) {
-                return true;
+                if ($this->db->query($unassign)) { // Unassign assigned lessons in sections
+                    return true;
+                }
             }
         }
 
