@@ -214,7 +214,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-palette2" data-bs-dismiss="modal" onClick="saveAssessment()">YES</button>
+                    <button type="button" class="btn btn-button" data-bs-dismiss="modal" onClick="saveAssessment()">YES</button>
                     <button type="button" class="btn" data-bs-dismiss="modal">NO</button>
                 </div>
             </div>
@@ -235,7 +235,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-palette2" data-bs-dismiss="modal" onClick="publishAssessment()">YES</button>
+                    <button type="button" class="btn btn-button" data-bs-dismiss="modal" onClick="publishAssessment()">YES</button>
                     <button type="button" class="btn" data-bs-dismiss="modal">NO</button>
                 </div>
             </div>
