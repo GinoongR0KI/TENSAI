@@ -129,3 +129,17 @@ tr:hover .hover-button{
     flex: 1;
     margin-top: 5px;
 }
+
+/* Sections Management */
+.nav-teachers {
+    color:black;
+}
+
+a {
+    text-decoration: none;
+    color:black;
+}
+
+a:hover {
+    color:black;
+}
