@@ -9,7 +9,7 @@ function saveAssessment() {
     if (title.value == "" || title.value == null) {generateToast("error", "Notification", "Save", "Please provide a title for the assessment"); return false;}
 
     var items = document.querySelector("#assessmentInItems");
-    if (items.value < 1 || items.value > items.max) {generateToast("error", "Notification", "Save", "Number of items must be between 1 - "+items.max); return false;}
+    if (parseInt(items.value) < 1 || parseInt(items.value) > parseInt(items.max)) {generateToast("error", "Notification", "Save", "Number of items must be between 1 - "+items.max); return false;}
 
     var slides = document.querySelectorAll(".slideBtn");
         // Questions
