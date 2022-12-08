@@ -143,3 +143,13 @@ a {
 a:hover {
     color:black;
 }
+
+/* Login Page */
+.tensai-head {
+    border-radius: .5rem;
+    box-shadow:0 8px 20px 0px rgba(0,0,0,0.125);
+    padding:5%;
+    /* margin:16px; */
+    position:absolute; top:5%;
+    word-wrap:break-word;
+}

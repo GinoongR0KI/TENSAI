@@ -69,7 +69,7 @@
 
     <div class="container-fluid">
 
-    <!--Off canvas login-->
+        <!--Off canvas login-->
         <div class="offcanvas offcanvas-start" tab-index="-1" id="LogIn" aria-labelledby="LogIn">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title">LOG IN TO TENSAI</h5>
@@ -79,19 +79,19 @@
                 <form method="POST">
                     <input class="form-control mb-3" name="email" type="text" placeholder="Email" aria-label="email"/>
                     <input class="form-control mb-3" name="password" type="password" placeholder="Password" aria-label="password"/>
-                    <button name="submitLogin" type="submit" class="btn btn-outline-palette2">LOGIN</a>
+                    <button name="submitLogin" type="submit" class="btn btn-button">LOGIN</a>
                 </form>
             </div>
         </div>
-    </div>
 
-    <!--Animated Background-->
-    <div class="tensai-head">
-        <div class="color-overlay d-flex justify-content-center align-items-center">
-            <div class="tensai-text">
-                <h1>WELCOME TO TENSAI</h1>
-                <h3>Technology-assisted Education via Networked-learning with Speech and Auditory Interplay</h3>
-                <a href="#" class="btn btn-outline-palette4 btn-lg" data-bs-toggle="offcanvas" data-bs-target="#LogIn">GO TO TENSAI</a>
+        <!--Animated Background-->
+        <div class="tensai-head d-flex justify-content-center align-items-center">
+            <div class="color-overlay">
+                <div class="tensai-text">
+                    <h1>WELCOME TO TENSAI</h1>
+                    <h3>Technology-assisted Education via Networked-learning with Speech and Auditory Interplay</h3>
+                    <a href="#" class="btn btn-outline-palette1 btn-lg" data-bs-toggle="offcanvas" data-bs-target="#LogIn">GO TO TENSAI</a>
+                </div>
             </div>
         </div>
     </div>
