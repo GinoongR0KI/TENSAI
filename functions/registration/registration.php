@@ -25,7 +25,7 @@ class registration {
         if ($email == null || $email == "") {return false;} // Check if the email is filled up
         if ($schoolID == null || $schoolID == "null") {return false;}
 
-        if (!$this->accountExists($email)) {
+        if ($this->accountExists($email) == false) {
             // Insert a new account here
             switch ($_SESSION['uType']) { // Determine which user type this account will be based on the user type of the account that created it
                 case "Admin":
@@ -75,9 +75,14 @@ class registration {
                     // Send an email with the information
                     $content = file_get_contents("../../email/confirmation.php"); // Get the email page from file
                     $content = sprintf($content, $email, $email, $uType, $code); // Fill up the special characters from the email with variable values.
-                    $mailer->send($email, "TENSAI Account Activation", $content); // Sends the email to the receiver.
+                    $mailStatus = $mailer->send($email, "TENSAI Account Activation", $content);
+                    if ($mailStatus == "Message Has Been Sent" { // Sends the email to the receiver.
+                        return true; // Account has been created successfully, as well as the email was sent
+                    } else {
+                        echo $mailStatus;
+                    }
 
-                    return true; // Account has been created successfully, as well as the email was sent
+                    
                 }
                 
             }
