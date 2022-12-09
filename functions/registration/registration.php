@@ -76,7 +76,7 @@ class registration {
                     $content = file_get_contents("../../email/confirmation.php"); // Get the email page from file
                     $content = sprintf($content, $email, $email, $uType, $code); // Fill up the special characters from the email with variable values.
                     $mailStatus = $mailer->send($email, "TENSAI Account Activation", $content);
-                    if ($mailStatus == "Message Has Been Sent" { // Sends the email to the receiver.
+                    if ($mailStatus == "Message Has Been Sent") { // Sends the email to the receiver.
                         return true; // Account has been created successfully, as well as the email was sent
                     } else {
                         echo $mailStatus;

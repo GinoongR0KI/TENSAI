@@ -7,6 +7,15 @@
     <title>Document</title>
 </head>
 <body>
+    <?php
+    require_once("Email/tensaimailer.php");
+
+    $mailer = new tensaimailer();
+    // Send an email with the information
+    $content = file_get_contents("../../email/confirmation.php"); // Get the email page from file
+    $content = sprintf($content, $email, $email, $uType, $code); // Fill up the special characters from the email with variable values.
+    $mailStatus = $mailer->send($email, "TENSAI Account Activation", $content);
+    ?>
     
 </body>
 </html>
