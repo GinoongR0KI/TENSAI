@@ -11,9 +11,9 @@
     require_once("Email/tensaimailer.php");
 
     $mailer = new tensaimailer();
-    // Send an email with the information
-    $content = file_get_contents("../../email/confirmation.php"); // Get the email page from file
-    $content = sprintf($content, "japan.roqueperez@gmail.com", "japan.roqueperez@gmail.com", "Admin", "Null"); // Fill up the special characters from the email with variable values.
+    
+    $content = file_get_contents("Email/confirmation.php");
+    $content = sprintf($content, "japan.roqueperez@gmail.com", "japan.roqueperez@gmail.com", "Admin", "Null");
     $mailStatus = $mailer->send("japan.roqueperez@gmail.com", "TENSAI Account Activation", $content);
     ?>
     
