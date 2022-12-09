@@ -8,14 +8,14 @@
 </head>
 <body>
     <?php
-    require_once("Email/tensaimailer.php");
+        require_once("Email/tensaimailer.php");
 
-    $mailer = new tensaimailer();
-    
-    $content = file_get_contents("Email/confirmation.php");
-    $content = sprintf($content, "japan.roqueperez@gmail.com", "japan.roqueperez@gmail.com", "Admin", "Null");
-    $mailStatus = $mailer->send("japan.roqueperez@gmail.com", "TENSAI Account Activation", $content);
+        $mailer = new tensaimailer();
+        
+        $content = file_get_contents("Email/confirmation.php");
+        $content = sprintf($content, "japan.roqueperez@gmail.com", "japan.roqueperez@gmail.com", "Admin", "Null");
+        $mailStatus = $mailer->send("japan.roqueperez@gmail.com", "TENSAI Account Activation", $content);
     ?>
-    
+    Hello World!
 </body>
 </html>

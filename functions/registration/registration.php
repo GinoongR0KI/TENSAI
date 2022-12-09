@@ -73,7 +73,7 @@ class registration {
                     $mailer = new tensaimailer(); // Create an emailer instance
 
                     // Send an email with the information
-                    $content = file_get_contents("../../email/confirmation.php"); // Get the email page from file
+                    $content = file_get_contents("../../Email/confirmation.php"); // Get the email page from file
                     $content = sprintf($content, $email, $email, $uType, $code); // Fill up the special characters from the email with variable values.
                     $mailStatus = $mailer->send($email, "TENSAI Account Activation", $content);
                     if ($mailStatus == "Message Has Been Sent") { // Sends the email to the receiver.

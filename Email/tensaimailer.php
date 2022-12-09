@@ -25,20 +25,16 @@ class tensaimailer {
     // Custom Functions
 
     function send($to, $subject, $content) {
-        // if (mail($to, $subject, $content, $headers) == false) {
-        //     return "Email Failed to Send";
-        // } else {
-        //     return "Email Sent";
-        // }
         $mailer = new PHPMailer();
 
         try {
             // Server Settings
+            $mailer->SMTPDebug = 2;
             $mailer->isSMTP();
             $mailer->Host = "smtp.gmail.com";
             $mailer->SMTPAuth = true;
             $mailer->Username = "tensaimailer@gmail.com";
-            $mailer->Password = "qvnnhconnbvbxyfq";
+            $mailer->Password = "eygikfeszzfwgfxq";
             $mailer->SMTPSecure = 'ssl';
             $mailer->Port = 465;
         
