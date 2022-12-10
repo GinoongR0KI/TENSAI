@@ -376,6 +376,13 @@ function createQuestionWorkspace(currentID) {
     canvas.setAttribute("id", "workspace-"+currentID);
     canvas.setAttribute("style", "border: 0.1rem #053742 solid; min-height: 40vh;");
     canvas.setAttribute("contenteditable","true");
+    canvas.addEventListener("paste", function (e) {
+        e.preventDefault();
+
+        var txt = (e.originalEvent || e).clipboardData.getData('text/plain');
+
+        document.execCommand("insertHTML", false, txt);
+    });
     //
 
     // Append
