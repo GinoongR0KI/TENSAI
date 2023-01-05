@@ -31,7 +31,7 @@ class lessonManager {
                 $selLessons = "SELECT * FROM matLessons WHERE teacherID = $teacherID"; // get the lessons from all the teachers in the same school
 
                 if ($search != null && $search != "") { // Add the search query
-                    $selLessons .= " AND (id LIKE '$search%' OR title LIKE '$search%' OR description LIKE '$search%')";
+                    $selLessons .= " AND (id LIKE '$search%' OR title LIKE '%$search%' OR description LIKE '%$search%')";
                 }
 
                 $selLessons .= ";";

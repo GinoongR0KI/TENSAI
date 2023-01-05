@@ -29,7 +29,7 @@ class tensaimailer {
 
         try {
             // Server Settings
-            $mailer->SMTPDebug = 2;
+            // $mailer->SMTPDebug = 2;
             $mailer->isSMTP();
             $mailer->Host = "smtp.gmail.com";
             $mailer->SMTPAuth = true;

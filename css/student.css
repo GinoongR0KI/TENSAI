@@ -152,6 +152,12 @@ input:checked + .slider {
 
 
 /*lessons page*/
+#cont_slides .slide {
+    color:white;
+    overflow:auto;
+    max-height:545px;
+}
+
 .lesson-thumbnail img{
     width: 5rem;
 }

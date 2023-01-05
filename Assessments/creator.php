@@ -25,7 +25,7 @@
 <body>
     <!-- Toast -->
     <div aria-live="polite" aria-atomic="true" class="d-flex align-items-center">
-        <div class="toast-container position-absolute" id="cont_toasts" style="position:fixed; bottom:1vh; right: 1vh">
+        <div class="toast-container position-fixed" id="cont_toasts" style="bottom:1vh; right: 1vh">
             
         </div>
     </div>
