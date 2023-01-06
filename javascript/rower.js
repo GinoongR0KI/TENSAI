@@ -144,7 +144,7 @@ function addActions_Sections(deleteModal, editModal, sectionID, schoolID, sectio
     return td;
 }
 
-function addActions_Lessons(lessonID, lessonName, accID, teacherID, targetModalDel) {
+function addActions_Lessons(lessonID, lessonName, accID, teacherID, state, uType, targetModalDel) {
     var td = document.createElement("td");
 
     var hover = document.createElement("div");
@@ -152,6 +152,7 @@ function addActions_Lessons(lessonID, lessonName, accID, teacherID, targetModalD
     var delBtn = document.createElement("button");
     var editBtn = document.createElement("button");
     var viewBtn = document.createElement("button");
+    var aprvBtn = document.createElement("button");
 
     // Attribute
     hover.setAttribute("class", "hover-button");
@@ -181,6 +182,17 @@ function addActions_Lessons(lessonID, lessonName, accID, teacherID, targetModalD
     viewBtn.addEventListener("click", function () {
         this.firstChild.click();
     });
+
+    // Approve Button
+    if ((state == "Pending" || state == "Draft/Pending" || state == "Published/Pending") && uType == "Principal") {
+        aprvBtn.setAttribute("class", "btn btn-palette3 md-3");
+        aprvBtn.setAttribute("onclick", "approveLesson("+lessonID+")"); // Do Approve Lesson
+        aprvBtn.innerHTML = '<a href="#"><i class="bi bi-send-check"></i></a>';
+
+        // Append
+        hover.appendChild(aprvBtn);
+        //
+    }
 
     // Append
     hover.appendChild(viewBtn);

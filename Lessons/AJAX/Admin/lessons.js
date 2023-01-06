@@ -56,7 +56,7 @@ function getLessons() {
                     var td_dateCreated = createData(lessonDCreated);
                     var td_dateUpdated = createData(lessonDUpdated);
                     var td_status = createData(lessonStatus);
-                    var td_actions = addActions_Lessons(lessons[i]['id'], lessonTitle, uID.value, lessons[i]['teacherID'], "#deleteLesson");
+                    var td_actions = addActions_Lessons(lessons[i]['id'], lessonTitle, uID.value, lessons[i]['teacherID'], lessonStatus, uType, "#deleteLesson");
 
                         // Append Row
                     appendRow(row, td_id, td_title, td_desc, td_dateCreated, td_dateUpdated, td_status, td_actions);
@@ -69,7 +69,7 @@ function getLessons() {
             } catch (e) {
                 var txt = document.createTextNode("No Results Found");
                 cont_lessons.appendChild(txt);
-                generateToast("searchError", "Notifications", "Search", "Error: No Lessons Found");
+                generateToast("searchError", "Notification", "Search", "Error: No Lessons Found");
             }
 
             // if (result != null && result != "" && result != "[]") {

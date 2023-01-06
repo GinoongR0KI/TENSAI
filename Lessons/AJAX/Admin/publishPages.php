@@ -24,7 +24,7 @@ for ($i = 0; $i < count($pageData); $i++) {
 //
 
 // Process
-if ($manager->publish($_POST['lessonID'], $_POST['title'], $_POST['description'], $pages)) {
+if ($manager->request($_POST['lessonID'], $_POST['title'], $_POST['description'], $pages)) {
     echo "true";
 } else {
     echo "false";

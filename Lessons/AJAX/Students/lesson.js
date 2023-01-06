@@ -26,21 +26,39 @@ function loadLesson() {
                 var lessonData = JSON.parse(result);
 
                 var uniqueID = Date.now() - 1000;
-                
-                // Display Lesson Title
-                var sepTitle = lessonData[0]['title'].split("|sepData|");
-                var title = sepTitle[0];
-                var sepDesc = lessonData[0]['description'].split("|sepData|");
-                var desc = sepDesc[0];
-                document.querySelector("#txt_lessonTitle").innerText = title;
-                document.querySelector("#txt_lessonDesc").innerText = !desc ? "No Description Available." : desc;
-                //
 
-                // Slides
+                // Lesson Information
+                var sepTitle = lessonData[0]['title'].split("|sepData|");
+                var sepDesc = lessonData[0]['description'].split("|sepData|");
                 var sepContent = lessonData[0]['content'].split("|sepData|");
-                var sepPages = sepContent[0].split("|sepPage|");
-                console.log(sepPages.length);
-                //
+                
+                if ((lessonData[0]['state'] == "Pending" || lessonData[0]['state'] == "Published/Pending") && document.getElementById("utype").value == "Principal") { // Needs a condition to check which user type is used
+                    // Use Drafted Data if it's in Pending state to allow Principal to view the requested lesson to be able to decide to allow the publication
+                    var title = sepTitle[1];
+                    var desc = sepDesc[1];
+
+                    document.querySelector("#txt_lessonTitle").innerText = title;
+                    document.querySelector("#txt_lessonDesc").innerText = !desc ? "No Description Available." : desc;
+                    //
+
+                    // Slides
+                    var sepPages = sepContent[1].split("|sepPage|");
+                    console.log(sepPages.length);
+                    //
+                } else {
+                    // Use Published Data if it's not in Pending state
+                    var title = sepTitle[0];
+                    var desc = sepDesc[0];
+
+                    document.querySelector("#txt_lessonTitle").innerText = title;
+                    document.querySelector("#txt_lessonDesc").innerText = !desc ? "No Description Available." : desc;
+                    //
+
+                    // Slides
+                    var sepPages = sepContent[0].split("|sepPage|");
+                    console.log(sepPages.length);
+                    //
+                }
                 
                 for (i = 0; i < sepPages.length-1; i++) {
                     var page = sepPages[i];

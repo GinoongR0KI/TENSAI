@@ -1,3 +1,23 @@
+<?php
+
+// Import PHP Scripts
+require_once("../functions/dbConn.php");
+require_once("../functions/security/redirector.php");
+//
+
+// Variables
+$redir = new redirector();
+//
+
+// Redirecting
+$redir->out("../login.php");
+//
+
+// Process
+
+//
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +53,8 @@
     </div>
 
     <!-- Toast -->
+
+    <input type="hidden" id="utype" value="<?php echo $_SESSION['uType'];?>">
 
     <div class="container-fluid">
         <div class="row">

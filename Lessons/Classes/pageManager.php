@@ -78,10 +78,13 @@ class pageManager {
             $pubDraftDescription = $sepDescription[0] . "|sepData|" . $description; // get the published data, and overwrite the drafts; Description
             //
 
-            if ($status == "Published") { // Check if the document has already been published
-                $updateLesson = "UPDATE matLessons SET title = '$pubDraftTitle', description = '$pubDraftDescription', dateUpdated = now(), state = 'Published/Draft' WHERE id = $lessonID;";
-            } else { // Otherwise, if it's not, the default should be 'Draft'; therefore, there is no need to update the status. Same goes when it's also in 'Published/Draft' status.
+            // Updated Conditional Statement fit for Draft, Pending, and Published states and its variants
+            $status = explode("/", $status);
+
+            if ($status[0] == "Draft") {
                 $updateLesson = "UPDATE matLessons SET title = '$pubDraftTitle', description = '$pubDraftDescription', dateUpdated = now() WHERE id = $lessonID;";
+            } else if ($status[0] == "Published") {
+                $updateLesson = "UPDATE matLessons SET title = '$pubDraftTitle', description = '$pubDraftDescription', dateUpdated = now(), state = 'Published/Draft' WHERE id = $lessonID;";
             }
             
             if ($this->db->query($updateLesson)) { // Update the record for the general information of the lesson
@@ -114,7 +117,122 @@ class pageManager {
 
     }
 
-    function publish($lessonID, $title, $description, $pageData) {
+    function request($lessonID, $title, $description, $pageData) {
+        // Every lesson must have a record already made in the matPages table, so we must do updates
+        $selLesson = "SELECT * FROM matLessons WHERE id = $lessonID;";
+        $selLQ = $this->db->query($selLesson);
+
+        if ($selLQ->num_rows > 0) {
+            $lesson = $selLQ->fetch_assoc();
+            $status = $lesson['state']; // get current lesson status
+
+            // Version Control
+            $publishedTitle = $lesson['title'];
+            $publishedDescription = $lesson['description'];
+
+            $sepTitle = explode("|sepData|", $publishedTitle);
+            $pubDraftTitle = $sepTitle[0] . "|sepData|" . $title; // get the published data, and overwrite the draft data. Title
+
+            $sepDescription = explode("|sepData|", $publishedDescription);
+            $pubDraftDescription = $sepDescription[0] . "|sepData|" . $description; // get the published data, and overwrite the drafts; Description
+            //
+
+            // There are the states of Draft, Pending, and Published. With the addition of the variants Draft/Pending, Published/Draft, and Published/Pending.
+            $status = explode("/", $status);
+
+            if ($status[0] == "Draft") {
+                $updateLesson = "UPDATE matLessons SET title = '$pubDraftTitle', description = '$pubDraftDescription', dateUpdated = now(), state = 'Draft/Pending' WHERE id = $lessonID;";
+            } else if ($status[0] == "Published") {
+                $updateLesson = "UPDATE matLessons SET title = '$pubDraftTitle', description = '$pubDraftDescription', dateUpdated = now(), state = 'Published/Pending' WHERE id = $lessonID;";
+            } else {
+                $updateLesson = "UPDATE matLessons SET title = '$pubDraftTitle', description = '$pubDraftDescription', dateUpdated = now(), state = 'Pending' WHERE id = $lessonID;";
+            }
+            
+            if ($this->db->query($updateLesson)) { // Update the record for the general information of the lesson
+                $selPages = "SELECT * FROM matPages WHERE lessonID = $lessonID;";
+                $selPQ = $this->db->query($selPages);
+
+                if ($selPQ->num_rows > 0) {
+                    $page = $selPQ->fetch_assoc();
+
+                    // Version Control
+                    $publishedPages = $page['content'];
+
+                    $sepPages = explode("|sepData|", $publishedPages);
+                    $pubDraftPages = $sepPages[0] . "|sepData|" . $pageData; // get the published data, and overwrite the drafts. Pages
+                    //
+
+                    $updatePage = "UPDATE matPages SET content = '$pubDraftPages' WHERE lessonID = $lessonID;";
+
+                    if ($this->db->query($updatePage)) {
+                        return true;
+                    }
+
+                }
+
+            }
+
+        }
+
+        return false;
+    }
+
+    function publish($lessonID) {
+        // Clean SQL Injection
+        $lessonID = mysqli_real_escape_string($this->db, $lessonID);
+        //
+
+        $selLesson = "SELECT * FROM matLessons WHERE id = $lessonID;";
+        $selLQ = $this->db->query($selLesson);
+
+        $selPages = "SELECT * FROM matPages WHERE lessonID = $lessonID;";
+        $selPQ = $this->db->query($selPages);
+
+        if ($selLQ->num_rows > 0) {
+            $lesson = $selLQ->fetch_assoc();
+            $status = $lesson['state'];
+
+            $pages = $selPQ->fetch_assoc();
+            $sepPages = explode("|sepData|", $pages['content']);
+
+            if ($status == "Pending" || $status == "Draft/Pending" || $status == "Published/Pending") {
+                $sepTitle = explode("|sepData|", $lesson['title']);
+                $sepDesc = explode("|sepData|", $lesson['description']);
+
+                if (!empty($sepTitle[1])) {
+                    $title = $sepTitle[1] . "|sepData|";
+                } else {
+                    $title = $sepTitle[0] . "|sepData|";
+                }
+
+                if (!empty($sepDesc[1])) {
+                    $desc = $sepDesc[1] . "|sepData|";
+                } else {
+                    $desc = $sepDesc[0] . "|sepData|";
+                }
+
+                if (!empty($sepPages[1])) {
+                    $content = $sepPages[1] . "|sepData|";
+                } else {
+                    $content = $sepPage[0] . "|sepData|";
+                }
+
+                // Set new values to title, description, and content of the lesson by transferring the Drafted data to the published data
+                $updateLesson = "UPDATE matLessons SET title = '$title', description = '$desc', dateUpdated = now(), state = 'Published' WHERE id = $lessonID;";
+                if ($this->db->query($updateLesson)) {
+                    // Update the pages
+                    $updatePages = "UPDATE matPages SET content = '$content' WHERE lessonID = $lessonID;";
+                    if ($this->db->query($updatePages)) {
+                        return true; // Successfully Published the title, description, and contents of the new lesson
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    function publish_obs($lessonID, $title, $description, $pageData) {
         // Clean SQL Injection
         $title = mysqli_real_escape_string($this->db, $title);
         $description = mysqli_real_escape_string($this->db, $description);

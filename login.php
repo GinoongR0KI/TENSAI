@@ -50,6 +50,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <link rel="manifest" href="../manifest.json">
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,7 +70,7 @@
 
     <!-- Toast -->
 
-    <div class="container-fluid">
+    <div class="container-fluid d-flex justify-content-center align-items-center">
 
         <!--Off canvas login-->
         <div class="offcanvas offcanvas-start" tab-index="-1" id="LogIn" aria-labelledby="LogIn">
@@ -88,9 +91,10 @@
         <div class="tensai-head d-flex justify-content-center align-items-center">
             <div class="color-overlay">
                 <div class="tensai-text">
-                    <h1>WELCOME TO TENSAI</h1>
-                    <h3>Technology-assisted Education via Networked-learning with Speech and Auditory Interplay</h3>
-                    <a href="#" class="btn btn-outline-palette1 btn-lg" data-bs-toggle="offcanvas" data-bs-target="#LogIn">GO TO TENSAI</a>
+                    <h1>WELCOME TO <b>TENSAI</b></h1>
+                    <!-- <h3>Technology-assisted Education via Networked-learning with Speech and Auditory Interplay</h3> -->
+                    <a href="#" class="btn btn-outline-palette1 btn-lg d-flex justify-content-center align-items-center" data-bs-toggle="offcanvas" data-bs-target="#LogIn">GO TO TENSAI</a>
+                    <a href="about.php" class="btn btn-outline-palette1 btn-lg d-flex justify-content-center align-items-center">ABOUT PAGE</a>
                 </div>
             </div>
         </div>
