@@ -51,7 +51,7 @@
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <link rel="manifest" href="../manifest.json">
+    <link rel="manifest" href="manifest.json">
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

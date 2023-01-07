@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <link rel="stylesheet" href="css/about.css">
 
+        <link rel="manifest" href="manifest.json">
+
         <title>About us</title>
     </head>
     <body onload="document.getElementsByTagName('button')[0].click()">
