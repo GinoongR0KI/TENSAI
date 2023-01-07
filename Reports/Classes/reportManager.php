@@ -426,6 +426,7 @@ class reportManager {
             }
 
             $highest *= 100;
+            $highest = round($highest, 2);
 
             if ($highest == 0) {
                 return ["N/A", "N/A", "N/A", "N/A"];
@@ -461,6 +462,7 @@ class reportManager {
             }
 
             $lowest *= 100;
+            $lowest = round($lowest, 2);
 
             return [$lowest, $assessTitle, $lessonTitle, $lessonDate];
         } else {
