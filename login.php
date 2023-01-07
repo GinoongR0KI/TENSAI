@@ -107,6 +107,10 @@
         if (error != null && error != "") {
             generateToast("logError", "Notification", "Login", error);
         }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("/service-worker.js");
+        }
     </script>
 </body>
 </html>
