@@ -236,7 +236,7 @@ class reportManager {
         $search = mysqli_real_escape_string($this->db, $search);
         //
 
-        $selStudents = "SELECT uAccounts.id, fname, mname, lname, gfname, gmname, glname, gemail, gcontact, school, section, bday, sex FROM uAccounts, uStudents WHERE uAccounts.id = uStudents.id";
+        $selStudents = "SELECT uAccounts.id, fname, mname, lname, gfname, gmname, glname, gemail, gcontact, school, section, bday, sex FROM uAccounts, uStudents WHERE (uAccounts.id = uStudents.id AND uAccounts.isActived == 1)";
         // Insert code block here for searching function
         if (!empty($search)) {
             $selStudents .= " AND (uAccounts.id LIKE '$search%' OR fname LIKE '%$search%' OR mname LIKE '%$search%' OR lname LIKE '%$search%' OR email LIKE '$search%')";
@@ -263,7 +263,7 @@ class reportManager {
         $search = mysqli_real_escape_string($this->db, $search);
         //
 
-        $selStudents = "SELECT uAccounts.id, fname, mname, lname, gfname, gmname, glname, gemail, gcontact, school, section, bday, sex FROM uAccounts, uStudents WHERE uAccounts.id = uStudents.id AND school = $schoolID";
+        $selStudents = "SELECT uAccounts.id, fname, mname, lname, gfname, gmname, glname, gemail, gcontact, school, section, bday, sex FROM uAccounts, uStudents WHERE (uAccounts.id = uStudents.id AND school = $schoolID  AND uAccounts.isActived == 1)";
         // Insert code block here for searching function
         if (!empty($search)) {
             $selStudents .= " AND (uAccounts.id LIKE '$search%' OR fname LIKE '%$search%' OR mname LIKE '%$search%' OR lname LIKE '%$search%' OR email LIKE '$search%')";
@@ -290,7 +290,7 @@ class reportManager {
         $search = mysqli_real_escape_string($this->db, $search);
         //
 
-        $selStudents = "SELECT uAccounts.id, fname, mname, lname, gfname, gmname, glname, gemail, gcontact, school, section, bday, sex FROM uAccounts, uStudents WHERE uAccounts.id = uStudents.id AND section = $sectionID";
+        $selStudents = "SELECT uAccounts.id, fname, mname, lname, gfname, gmname, glname, gemail, gcontact, school, section, bday, sex FROM uAccounts, uStudents WHERE (uAccounts.id = uStudents.id AND section = $sectionID AND uAccounts.isActived == 1)";
         // Insert code block here for searching function
         if (!empty($search)) {
             $selStudents .= " AND (uAccounts.id LIKE '$search%' OR fname LIKE '%$search%' OR mname LIKE '%$search%' OR lname LIKE '%$search%' OR email LIKE '$search%')";
