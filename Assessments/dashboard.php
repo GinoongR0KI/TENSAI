@@ -49,6 +49,7 @@ $redir->out("../login.php");
 
     <div class="back">
         <a id="btn_back" href="../student.php"><img src="../mat_icons/tensai_back_btn.png"></a>
+        <a class="btn btn-secondary" href="../Reports/student.php?userID=<?php echo $_SESSION['id']; ?>" target="_blank">VIEW REPORTS</a>
     </div>
 
     <div class="container-fluid">

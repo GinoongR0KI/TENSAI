@@ -434,13 +434,11 @@ function callRINA() {
                                     }
                                 break;
                                 case "Multiple Choice":
-                                    if (ansTxt.innerText.toLowerCase().includes("option number one") || ansTxt.innerText.toLowerCase().includes("option number two") || ansTxt.innerText.toLowerCase().includes("option number three") || ansTxt.innerText.toLowerCase().includes("option number four") || ansTxt.innerText.toLowerCase().includes("option number 1") || ansTxt.innerText.toLowerCase().includes("option number 2") || ansTxt.innerText.toLowerCase().includes("option number 3") || ansTxt.innerText.toLowerCase().includes("option number 4")) {
+                                    if (ansTxt.innerText.toLowerCase().includes("letter a") || ansTxt.innerText.toLowerCase().includes("letter b") || ansTxt.innerText.toLowerCase().includes("letter c") || ansTxt.innerText.toLowerCase().includes("letter d")) {
                                         modal.show();
                                         rinaReply.innerText = "Are you sure with this answer?";
                                         textToSpeech(rinaReply.innerText);
                                     }
-                                    // var choices = document.querySelectorAll(".choice");
-                                    // console.log(choices);
                                     
                                 break;
                                 case "True / False":
@@ -477,16 +475,16 @@ function callRINA() {
                                     document.querySelector("#ident-submit").click();
                                 break;
                                 case "Multiple Choice":
-                                    if (ansTxt.toLowerCase().includes("option number one") || ansTxt.toLowerCase().includes("option number 1")) {
+                                    if (ansTxt.toLowerCase().includes("letter a")) {
                                         modal.childNodes[1].childNodes[1].childNodes[5].childNodes[1].click();
                                         choices[0].childNodes[1].click();
-                                    } else if (ansTxt.toLowerCase().includes("option number two") || ansTxt.toLowerCase().includes("option number 2")) {
+                                    } else if (ansTxt.toLowerCase().includes("letter b")) {
                                         modal.childNodes[1].childNodes[1].childNodes[5].childNodes[1].click();
                                         choices[1].childNodes[1].click();
-                                    } else if (ansTxt.toLowerCase().includes("option number three") || ansTxt.toLowerCase().includes("option number 3")) {
+                                    } else if (ansTxt.toLowerCase().includes("letter c")) {
                                         modal.childNodes[1].childNodes[1].childNodes[5].childNodes[1].click();
                                         choices[2].childNodes[1].click();
-                                    } else if (ansTxt.toLowerCase().includes("option number four") || ansTxt.toLowerCase().includes("option number 4")) {
+                                    } else if (ansTxt.toLowerCase().includes("letter d")) {
                                         modal.childNodes[1].childNodes[1].childNodes[5].childNodes[1].click();
                                         choices[3].childNodes[1].click();
                                     }

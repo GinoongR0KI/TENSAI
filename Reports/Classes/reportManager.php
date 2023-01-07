@@ -414,24 +414,26 @@ class reportManager {
             $highest = 0;
             $assessTitle = "N/A";
             $lessonTitle = "N/A";
+            $lessonDate = "N/A";
             while ($records = $selRQ->fetch_assoc()) {
                 $ave = $records['score'] / $records['highestPossible'];
                 if ($highest < $ave) {
                     $highest = $ave;
                     $assessTitle = explode("|sepData|", $records['titleAssess'])[0];
                     $lessonTitle = explode("|sepData|", $records['titleLesson'])[0];
+                    $lessonDate = $records['dateTaken'];
                 }
             }
 
             $highest *= 100;
 
             if ($highest == 0) {
-                return ["N/A", "N/A", "N/A"];
+                return ["N/A", "N/A", "N/A", "N/A"];
             }
 
-            return [$highest, $assessTitle, $lessonTitle];
+            return [$highest, $assessTitle, $lessonTitle, $lessonDate];
         } else {
-            return ["N/A", "N/A", "N/A"];
+            return ["N/A", "N/A", "N/A", "N/A"];
         }
     }
 
@@ -447,20 +449,22 @@ class reportManager {
             $lowest = 0;
             $assessTitle = "N/A";
             $lessonTitle = "N/A";
+            $lessonDate = "N/A";
             while ($records = $selRQ->fetch_assoc()) {
                 $ave = $records['score'] / $records['highestPossible'];
                 if ($lowest >= $ave) {
                     $lowest = $ave;
                     $assessTitle = explode("|sepData|", $records['titleAssess'])[0];
                     $lessonTitle = explode("|sepData|", $records['titleLesson'])[0];
+                    $lessonDate = $records['dateTaken'];
                 }
             }
 
             $lowest *= 100;
 
-            return [$lowest, $assessTitle, $lessonTitle];
+            return [$lowest, $assessTitle, $lessonTitle, $lessonDate];
         } else {
-            return ["N/A","N/A","N/A"];
+            return ["N/A","N/A","N/A", "N/A"];
         }
     }
 

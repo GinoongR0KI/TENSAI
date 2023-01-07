@@ -128,6 +128,7 @@ $lowestAssess = $manager->getLowestAssessment($_GET['userID']);
                         </div>
                         <p class="mb-1">Lesson Name: <?php echo $highestAssess[2]; ?></p>
                         <p class="mb-1">Assessment Title: <?php echo $highestAssess[1]; ?></p>
+                        <p class="mb-1">Date Taken: <?php echo $highestAssess[3]; ?></p>
                     </div>  
 
                     <div class="list-group-item list-group-item-action">
@@ -137,6 +138,7 @@ $lowestAssess = $manager->getLowestAssessment($_GET['userID']);
                         </div>
                         <p class="mb-1">Lesson Name: <?php echo $lowestAssess[2]; ?></p>
                         <p class="mb-1">Assessment Title: <?php echo $lowestAssess[1]; ?></p>
+                        <p class="mb-1">Date Taken: <?php echo $lowestAssess[3]; ?></p>
                     </div>  
                 </div>
             </div>

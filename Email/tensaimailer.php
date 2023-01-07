@@ -34,7 +34,7 @@ class tensaimailer {
             $mailer->Host = "smtp.gmail.com";
             $mailer->SMTPAuth = true;
             $mailer->Username = "tensaimailer@gmail.com";
-            $mailer->Password = "eygikfeszzfwgfxq";
+            $mailer->Password = "gdawmpguyvmjqmhm";
             $mailer->SMTPSecure = 'ssl';
             $mailer->Port = 465;
         
