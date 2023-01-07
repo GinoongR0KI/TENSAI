@@ -446,7 +446,7 @@ class reportManager {
         $selRQ = $this->db->query($selRecords);
 
         if ($selRQ->num_rows > 0) {
-            $lowest = 0;
+            $lowest = 101;
             $assessTitle = "N/A";
             $lessonTitle = "N/A";
             $lessonDate = "N/A";
