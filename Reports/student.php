@@ -54,6 +54,8 @@ $lowestAssess = $manager->getLowestAssessment($_GET['userID']);
 
     <!-- Toast -->
 
+    <input type="hidden" value="<?php echo $lowestAssess[0] . ", " . $lowestAssess[1] . ", " . $lowestAssess[2] . ", " . $lowestAssess[3]; ?>">
+
     <div class="row">
         <div class="col">
             <div class="report-header m-4">
@@ -127,7 +129,7 @@ $lowestAssess = $manager->getLowestAssessment($_GET['userID']);
                     <div class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">Highest Assessment Performance</h5>
-                            <span class="badge bg-secondary rounded-pill"><h6><?php echo $highestAssess[0]; ?>%</h6></span>
+                            <span class="badge bg-secondary rounded-pill"><h6><?php echo $highestAssess[0] != "N/A" ? $highestAssess[0] . "%" : $highestAssess[0]; ?></h6></span>
                         </div>
                         <p class="mb-1">Lesson Name: <?php echo $highestAssess[2]; ?></p>
                         <p class="mb-1">Assessment Title: <?php echo $highestAssess[1]; ?></p>
@@ -137,7 +139,7 @@ $lowestAssess = $manager->getLowestAssessment($_GET['userID']);
                     <div class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">Lowest Assessment Performance</h5>
-                            <span class="badge bg-secondary rounded-pill"><h6><?php echo $lowestAssess[0]; ?>%</h6></span>
+                            <span class="badge bg-secondary rounded-pill"><h6><?php echo $lowestAssess[0] != "N/A" ? $lowestAssess[0] . "%" : $lowestAssess[0]; ?></h6></span>
                         </div>
                         <p class="mb-1">Lesson Name: <?php echo $lowestAssess[2]; ?></p>
                         <p class="mb-1">Assessment Title: <?php echo $lowestAssess[1]; ?></p>
