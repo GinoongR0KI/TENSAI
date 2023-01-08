@@ -132,7 +132,7 @@ $redir->out("../login.php");
                     <br>
                 </div>
                 
-                <button class="btn position-absolute bottom-0 end-0 p-4" id="rina_click" onClick="manualToggleBubble()"><img src="../mat_icons/rina_base.png"></img></button>
+                <button class="btn position-absolute bottom-0 end-0 p-4" id="rina_click" data-bs-toggle="modal" data-bs-target="#rina_modalCommands"><img src="mat_icons/rina_base.png"></img></button>
             </div>
             
         </div>
@@ -184,6 +184,114 @@ $redir->out("../login.php");
             </div>
         </div>
     </div>
+
+    <!-- RINA COMMANDS MODAL -->
+    <div class="modal fade" id="rina_modalCommands" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">RINA COMMANDS</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Command</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Hello RINA</td>
+                                <td>Toggle RINA on to listen to your commands.</td>
+                            </tr>
+                            <tr>
+                                <td>Thanks RINA / Bye RINA</td>
+                                <td>Toggle RINA off.</td>
+                            </tr>
+
+                            <tr>
+                                <td>RINA log me out</td>
+                                <td>Ask RINA to log you out of your account.</td>
+                            </tr>
+                            <tr>
+                                <td>confirm logout</td>
+                                <td>Allow RINA to log you out of your account.</td>
+                            </tr>
+                            <tr>
+                                <td>cancel logout</td>
+                                <td>Cancel your log out request from RINA.</td>
+                            </tr>
+
+                            <tr>
+                                <td>click lessons</td>
+                                <td>[Only works on the main dashboard] Clicks the Lessons dashboard button.</td>
+                            </tr>
+                            <tr>
+                                <td>click assessments</td>
+                                <td>[Only works on the main dashboard] Clicks the Assessments dashboard button.</td>
+                            </tr>
+
+                            <tr>
+                                <td>go back</td>
+                                <td>Goes back to previous page.</td>
+                            </tr>
+
+                            <tr>
+                                <td>view [lesson name]</td>
+                                <td>Select specified lesson in the Lessons dashboard.</td>
+                            </tr>
+                            <tr>
+                                <td>go to lesson</td>
+                                <td>Views selected lesson</td>
+                            </tr>
+
+                            <tr>
+                                <td>turn page next</td>
+                                <td>Turns page to the next page while viewing a lesson.</td>
+                            </tr>
+                            <tr>
+                                <td>turn page back</td>
+                                <td>Turns page to the previous page while viewing a lesson.</td>
+                            </tr>
+                            <tr>
+                                <td>view lesson details</td>
+                                <td>Opens up the lesson description while viewing a lesson.</td>
+                            </tr>
+                            <tr>
+                                <td>close lesson details</td>
+                                <td>Closes the lesson description window while viewing a lesson.</td>
+                            </tr>
+
+                            <tr>
+                                <td>take [assessment name]</td>
+                                <td>Selects the specified assessment title and allows you to take that assessment</td>
+                            </tr>
+
+                            <tr>
+                                <td>my answer is [answer]</td>
+                                <td>This allows you to input an answer. [Multiple Choices will only take "letter a-d", and True or False will only take "true/false"]</td>
+                            </tr>
+                            <tr>
+                                <td>confirm answer</td>
+                                <td>Allow RINA to enter the answer you have given.</td>
+                            </tr>
+                            <tr>
+                                <td>cancel answer</td>
+                                <td>Cancel the answer you have given to RINA.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-palette2" data-bs-dismiss="modal">CANCEL</button>
+                    <button type="button" class="btn btn-secondary" id="rina_openBtn" data-bs-dismiss="modal" onClick="manualToggleBubble()">OPEN RINA</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         var currentSlide = 0;
         showSlide(currentSlide);

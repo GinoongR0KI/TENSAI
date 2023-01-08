@@ -54,11 +54,17 @@ function manualToggleBubble() {
 function toggleBubble() {
     var rina = document.querySelector("#rina_bubble");
     rina.style.display = "block";
+
+    openBtn = document.querySelector("#rina_openBtn");
+    openBtn.innerText = "CLOSE RINA";
 }
 
 function untoggleBubble() {
     var rina = document.querySelector("#rina_bubble");
     rina.style.display = "none";
+
+    openBtn = document.querySelector("#rina_openBtn");
+    openBtn.innerText = "OPEN RINA";
 }
 
 function isToggledBubble() {
