@@ -35,7 +35,7 @@ class assessmentDisplayer {
                         
                         // $json_string .= json_encode($assignedLessons) . ",";
 
-                        $selAssessments = "SELECT * FROM matAssessments WHERE lessonID = $lessonID AND (status = 'Published' OR status = 'Published/Draft' OR status = 'Published/Pending');";
+                        $selAssessments = "SELECT matAssessments.* FROM matAssessments, matLessons WHERE matLessons.id = matAssessments.lessonID AND lessonID = $lessonID AND (status = 'Published' OR status = 'Published/Draft' OR status = 'Published/Pending') AND (matLessons.state = 'Published' OR matLessons.state = 'Published/Draft' OR matLessons.state = 'Published/Pending');";
                         $selAsQ = $this->db->query($selAssessments);
 
                         if ($selAsQ->num_rows > 0) {
