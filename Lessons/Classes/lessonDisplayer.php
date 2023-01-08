@@ -32,7 +32,7 @@ class lessonDisplayer {
                     echo "[";
                     while($assigned = $selAQ->fetch_assoc()) {
                         $lessonID = $assigned['lessonID'];
-                        $selLessons = "SELECT * FROM matLessons WHERE id = $lessonID;";
+                        $selLessons = "SELECT * FROM matLessons WHERE id = $lessonID AND (state = 'Published' OR state = 'Published/Draft' OR state = 'Published/Pending');";
                         $selLQ = $this->db->query($selLessons);
 
                         if ($selLQ->num_rows > 0) {
