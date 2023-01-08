@@ -32,7 +32,7 @@ function loadLesson() {
                 var sepDesc = lessonData[0]['description'].split("|sepData|");
                 var sepContent = lessonData[0]['content'].split("|sepData|");
                 
-                if ((lessonData[0]['state'] == "Pending" || lessonData[0]['state'] == "Published/Pending") && document.getElementById("utype").value == "Principal") { // Needs a condition to check which user type is used
+                if ((lessonData[0]['state'] == "Draft/Pending" || lessonData[0]['state'] == "Published/Pending") && document.getElementById("utype").value == "Principal") { // Needs a condition to check which user type is used
                     // Use Drafted Data if it's in Pending state to allow Principal to view the requested lesson to be able to decide to allow the publication
                     var title = sepTitle[1];
                     var desc = sepDesc[1];
