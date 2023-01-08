@@ -98,7 +98,7 @@ $redir->out("../login.php");
                     <br>
                 </div>
                 
-                <button class="btn position-absolute bottom-0 end-0 p-4" id="rina_click" data-bs-toggle="modal" data-bs-target="#rina_modalCommands"><img src="mat_icons/rina_base.png"></img></button>
+                <button class="btn position-absolute bottom-0 end-0 p-4" id="rina_click" data-bs-toggle="modal" data-bs-target="#rina_modalCommands"><img src="../mat_icons/rina_base.png"></img></button>
             </div>
             
         </div>
